@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Onest:wght@100..900&family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    <title>Game Player</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: black;
+            overflow: hidden;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 0; /* Makes sure the iframe is behind the control bar */
+        }
+
+        .control-bar {
+            position: fixed;
+            align-items: center;
+            justify-content: flex-start; /* Align buttons to the left */
+            text-align: center;
+            bottom: 0;
+            width: 30%;
+            display: flex;
+            gap: 10px; /* Add space between the buttons */
+            background: #090909;
+            padding: 5px;
+            border-radius: 50px;
+            transition: transform 0.4s ease-out, opacity 0.5s ease-out;
+            opacity: 0;
+            transform: translateY(100%);
+            z-index: 1000; /* Ensure the control bar stays on top */
+            height: 50px;
+            box-shadow: 0px 7px 17px rgba(0, 0, 0, 0.8);
+        }
+
+        .control-bar.visible {
+            opacity: 1;
+            transform: translateY(-10px);
+        }
+
+        .control-bar button {
+            background: #090909;
+            border: none;
+            cursor: pointer;
+            width: 50px; /* Set the width and height to the same value for a perfect circle */
+            height: 50px;
+            border-radius: 50%; /* Makes the button a perfect circle */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s;
+        }
+		
+		.control-bar button:active {
+    transform: scale(0.9); /* Shrinks the button by 10% */
+}
+
+        .control-bar button:hover {
+            background: #111;
+            box-shadow: 0 0 7px 2px rgba(255, 255, 255, 0.6); /* Smooth glowing outline */
+        }
+
+        .control-bar button:first-child {
+            margin-left: 6px; /* Adds left margin to the first button */
+        }
+
+        .control-bar button img {
+            width: 30px; /* Adjust the icon size */
+            height: 30px;
+        }
+
+        .game-name {
+    color: white;
+    font-size: 20px;
+    font-weight: 500;
+    margin-left: 5vw;
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 1100;
+	font-family: "Geist Mono", serif;
+}
+
+.control-bar button[data-tooltip] {
+    position: relative;
+}
+
+.control-bar button[data-tooltip]:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    transition-delay: 0.3s; /* Delay before the tooltip starts fading in */
+}
+
+.control-bar button[data-tooltip]:hover::after {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0s; /* Remove delay when the tooltip appears */
+}
+		
+    </style>
+</head>
+<body>
+    <iframe id="gameIframe"></iframe>
+    <div class="control-bar" id="controlBar">
+    <button onclick="window.location.href='games.html'" data-tooltip="Go Back">
+        <img src="textures/icons/back.png" alt="Back">
+    </button>
+    <button onclick="toggleFullscreen()" data-tooltip="Toggle Fullscreen">
+        <img src="textures/icons/fullscreen.png" alt="Fullscreen">
+    </button>
+    <button onclick="reloadIframe()" data-tooltip="Reload Game">
+        <img src="textures/icons/reload.png" alt="Reload">
+    </button>
+    <div class="game-name" id="gameName">
+        Game Name
+    </div>
+</div>
+
+    <script>
+    const params = new URLSearchParams(window.location.search);
+    const gameUrl = params.get('url');
+    const gameName = params.get('name');
+    const controlBar = document.getElementById('controlBar');
+    const iframe = document.getElementById('gameIframe');
+    const gameNameElement = document.getElementById('gameName');
+    const popupMenu = document.getElementById('popupMenu');
+    
+    if (gameUrl) {
+        iframe.src = gameUrl;
+    } else {
+        document.body.innerHTML = '<p style="color: white; text-align: center;">No game URL provided.</p>';
+    }
+
+    if (gameName) {
+        gameNameElement.textContent = gameName;
+    } else {
+        gameNameElement.textContent = 'Unknown Game';
+    }
+
+    gameNameElement.addEventListener('click', () => {
+        popupMenu.classList.toggle('visible');
+    });
+
+    function toggleFullscreen() {
+        if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen();
+        } else {
+            document.exitFullscreen();
+        }
+    }
+
+    function reloadIframe() {
+        const src = iframe.src;
+        iframe.src = "";
+        setTimeout(() => {
+            iframe.src = src;
+        }, 100);
+    }
+
+    let isControlBarVisible = false;
+
+    function toggleControlBar() {
+        if (isControlBarVisible) {
+            controlBar.classList.remove("visible");
+        } else {
+            controlBar.classList.add("visible");
+        }
+        isControlBarVisible = !isControlBarVisible;
+    }
+
+    window.addEventListener("load", () => {
+        setTimeout(() => {
+            controlBar.classList.add("visible");
+        }, 50);
+    });
+
+    document.addEventListener("fullscreenchange", () => {
+        if (document.fullscreenElement) {
+            controlBar.classList.remove("visible");
+        } else {
+            controlBar.classList.add("visible");
+        }
+    });
+</script>
+
+</body>
+</html>
