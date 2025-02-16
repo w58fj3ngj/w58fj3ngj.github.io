@@ -1,0 +1,110 @@
+body {
+    background-color: #111; /* Dark Purple */
+    color: white;
+    font-family: Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* Top Navigation Bar */
+.topnav {
+    background-color: #090909; /* Darker Purple */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 25px;
+    height: 65px;
+}
+
+.logo a {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 500;
+    font-family: Verdana, sans-serif;
+}
+
+/* Nav Links with Animated Underline */
+.nav-links a {
+    position: relative;
+    color: white;
+    padding: 12px 20px;
+    text-decoration: none;
+    text-align: center;
+    font-size: 17px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background-color: #fff;
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* Permanent Underline for Active Link */
+.nav-links a.active::after {
+    width: 100%;
+}
+
+/* Settings Form */
+.settings-form {
+    padding: 50px;
+    text-align: center;
+}
+
+.settings-form h1 {
+    margin-bottom: 20px;
+}
+
+.setting {
+    margin: 15px 0;
+    text-align: left;
+    display: inline-block;
+    width: 80%;
+}
+
+.setting label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.setting select,
+.setting input[type="checkbox"] {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    background-color: #4B0150; /* Darker Purple */
+    border: none;
+    color: white;
+    border-radius: 4px;
+}
+
+.setting input[type="checkbox"] {
+    width: auto;
+    margin-top: 0;
+}
+
+button {
+    background-color: #6A1B9A; /* Lighter Purple */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #4B0150; /* Darker Purple */
+}
