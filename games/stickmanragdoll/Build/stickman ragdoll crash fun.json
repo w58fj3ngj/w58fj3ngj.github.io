@@ -1,0 +1,16 @@
+{
+"companyName": "DefaultCompany",
+"productName": "Stickman Ragdoll Crash Fun",
+"productVersion": "1.0",
+"dataUrl": "stickman ragdoll crash fun.data.unityweb",
+"wasmCodeUrl": "stickman ragdoll crash fun.wasm.code.unityweb",
+"wasmFrameworkUrl": "stickman ragdoll crash fun.wasm.framework.unityweb",
+"graphicsAPI": ["WebGL 2.0","WebGL 1.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Dark",
+"backgroundColor": "#231F20",
+"cacheControl": {"default": "must-revalidate"},
+"developmentBuild": false,
+"multithreading": false,
+"unityVersion": "2019.1.8f1"
+}
