@@ -26,6 +26,12 @@
     <!-- Games Section -->
     <section class="games-section">
         <h1>Games</h1>
+
+		<div class="search-container" style="text-align: center;">
+      <div class="textInputWrapper">
+        <input type="text" id="searchInput" class="textInput" placeholder="Search games..." />
+      </div>
+    </div>
         <div class="games-container">
             <!-- Example Game Button -->
             <div class="game-button" data-url="https://docs.google.com/forms/d/e/1FAIpQLSfGL1e7OqLF33SESfHseKldPbCApT5INSAiy2gx7-nUQJaUvQ/viewform" data-name="Suggestion">
@@ -68,6 +74,56 @@
     <p class="game-title">Temple Of Boom</p>
 </div>
 
+<div class="game-button" data-url="games/eggycar/index.html" data-name="Eggy Car">
+    <img src="textures/games/eggycar.webp" alt="Game">
+    <p class="game-title">Eggy Car</p>
+</div>
+
+<div class="game-button" data-url="games/pbm/index.html" data-name="Power Badminton">
+    <img src="textures/games/pbm.webp" alt="Game">
+    <p class="game-title">Power Badminton</p>
+</div>
+
+<div class="game-button" data-url="games/maskedforces/index.html" data-name="Masked Forces">
+    <img src="textures/games/maskedforces.webp" alt="Game">
+    <p class="game-title">Masked Forces</p>
+</div>
+
+<div class="game-button" data-url="games/smashkarts/index.html" data-name="Smash Karts">
+    <img src="textures/games/smashkarts.webp" alt="Game">
+    <p class="game-title">Smash Karts</p>
+</div>
+
+<div class="game-button" data-url="games/jetpackjoyride/index.html" data-name="Jetpack Joyride">
+    <img src="textures/games/jetpackjoyride.webp" alt="Game">
+    <p class="game-title">Jetpack Joyride</p>
+</div>
+
+<div class="game-button" data-url="games/stack/index.html" data-name="Stack">
+    <img src="textures/games/stack.webp" alt="Game">
+    <p class="game-title">Stack</p>
+</div>
+
+<div class="game-button" data-url="games/candyjump/index.html" data-name="Candy Jump">
+    <img src="textures/games/candyjump.webp" alt="Game">
+    <p class="game-title">Candy Jump</p>
+</div>
+
+<div class="game-button" data-url="games/8ballpool/index.html" data-name="8 Ball Pool">
+    <img src="textures/games/8ballpool.webp" alt="Game">
+    <p class="game-title">8 Ball Pool</p>
+</div>
+
+<div class="game-button" data-url="games/slingdrift/index.html" data-name="Sling Drift">
+    <img src="textures/games/slingdrift.webp" alt="Game">
+    <p class="game-title">Sling Drift</p>
+</div>
+
+<div class="game-button" data-url="games/golfchampions/index.html" data-name="Golf Champions">
+    <img src="textures/games/golfchampions.webp" alt="Game">
+    <p class="game-title">Golf Champions</p>
+</div>
+
 <div class="game-button" data-url="games/jungletowerdefense/index.html" data-name="Jungle Tower Defense">
     <img src="textures/games/jungletowerdefense.webp" alt="Game">
     <p class="game-title">Jungle Tower Defense</p>
@@ -86,6 +142,11 @@
 <div class="game-button" data-url="games/drive-mad/index.html" data-name="Drive Mad">
     <img src="textures/games/drivemad.webp" alt="Game">
     <p class="game-title">Drive Mad</p>
+</div>
+
+<div class="game-button" data-url="games/monstertracks/index.html" data-name="Monster Tracks">
+    <img src="textures/games/monstertracks.webp" alt="Game">
+    <p class="game-title">Monster Tracks</p>
 </div>
 
 <div class="game-button" data-url="games/sausageflip/index.html" data-name="Sausage Flip">
@@ -233,6 +294,11 @@
     <p class="game-title">Retro Bowl</p>
 </div>
 
+<div class="game-button" data-url="games/retro-bowl-college/index.html" data-name="Retro Bowl College">
+    <img src="textures/games/retrobowl-college.webp" alt="Retro Bowl">
+    <p class="game-title">Retro Bowl College</p>
+</div>
+
 <div class="game-button" data-url="games/subway-surfers/index.html" data-name="Subway Surfers">
     <img src="textures/games/subwaysurfers.webp" alt="Subway Surfers">
     <p class="game-title">Subway Surfers</p>
@@ -352,6 +418,15 @@
         window.location.href = `play.html?url=${encodeURIComponent(url)}&name=${encodeURIComponent(gameName)}`;
     });
 });
+
+document.getElementById('searchInput').addEventListener('input', function () {
+      const searchValue = this.value.toLowerCase();
+      document.querySelectorAll('.game-button').forEach(button => {
+        const gameName = button.getAttribute('data-name').toLowerCase();
+        // Show button if its data-name includes the search value, otherwise hide it
+        button.style.display = gameName.includes(searchValue) ? 'inline-block' : 'none';
+      });
+    });
 	
 	</script>
 </body>
