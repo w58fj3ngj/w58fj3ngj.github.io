@@ -26,25 +26,25 @@
             position: absolute;
             top: 0;
             left: 0;
-            z-index: 0; /* Makes sure the iframe is behind the control bar */
+            z-index: 0;
         }
 
         .control-bar {
             position: fixed;
             align-items: center;
-            justify-content: flex-start; /* Align buttons to the left */
+            justify-content: flex-start;
             text-align: center;
             bottom: 0;
             width: 30%;
             display: flex;
-            gap: 10px; /* Add space between the buttons */
+            gap: 10px;
             background: #090909;
             padding: 5px;
             border-radius: 50px;
             transition: transform 0.4s ease-out, opacity 0.5s ease-out;
             opacity: 0;
             transform: translateY(100%);
-            z-index: 1000; /* Ensure the control bar stays on top */
+            z-index: 1000;
             height: 50px;
             box-shadow: 0px 7px 17px rgba(0, 0, 0, 0.8);
         }
@@ -58,119 +58,92 @@
             background: #090909;
             border: none;
             cursor: pointer;
-            width: 50px; /* Set the width and height to the same value for a perfect circle */
+            width: 50px;
             height: 50px;
-            border-radius: 50%; /* Makes the button a perfect circle */
+            border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             transition: all 0.3s;
         }
-		
-		.control-bar button:active {
-    transform: scale(0.9); /* Shrinks the button by 10% */
-}
 
-        .control-bar button:hover {
-        }
-
-        .control-bar button:first-child {
-            margin-left: 6px; /* Adds left margin to the first button */
+        .control-bar button:active {
+            transform: scale(0.9);
         }
 
         .control-bar button img {
-            width: 30px; /* Adjust the icon size */
+            width: 30px;
             height: 30px;
-			transition: filter 0.2s ease-in-out;
+            transition: filter 0.2s ease-in-out;
         }
-		
-		.control-bar button:hover img {
-    filter: brightness(0.6); /* Darkens the image */
+
+        .control-bar button:hover img {
+            filter: brightness(0.6);
+        }
+
+        .game-name-container {
+    flex-grow: 1; /* Takes up remaining space */
+    display: flex;
+    justify-content: center;
+    position: relative; /* Allows positioning */
+    margin-left: -27px; /* Makes the container overlap 10px to the left */
 }
 
         .game-name {
-    color: white;
-    font-size: 20px;
-    font-weight: 500;
-    margin-left: 5vw;
-    display: flex;
-    align-items: center;
-    position: relative;
-    z-index: 1100;
-	font-family: "Geist Mono", serif;
-}
+            color: white;
+            font-size: 20px;
+            font-weight: 500;
+            font-family: "Geist Mono", serif;
+            display: flex;
+            align-items: center;
+            z-index: 1100;
+        }
 
-.control-bar button[data-tooltip] {
-    position: relative;
-}
+        .tooltip-container {
+            position: relative;
+        }
 
-.control-bar button[data-tooltip]:hover::after {
-    content: attr(data-tooltip);
-    position: absolute;
-    bottom: 60px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: rgba(0, 0, 0, 0.8);
-    color: white;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 14px;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-    transition-delay: 0.3s; /* Delay before the tooltip starts fading in */
-}
+        .tooltip-container:hover .tooltip {
+            opacity: 1;
+        }
 
-.control-bar button[data-tooltip]:hover::after {
-    opacity: 1;
-    visibility: visible;
-    transition-delay: 0s; /* Remove delay when the tooltip appears */
-}
+        .tooltip {
+            position: absolute;
+            background: #090909;
+            color: white;
+            padding: 8px;
+            border-radius: 3px;
+            font-size: 15px;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+            transform: translateY(-53px);
+        }
 
-.tooltip {
-    position: absolute;
-    background: #090909;
-    color: white;
-    padding: 8px;
-    border-radius: 3px;
-    font-size: 15px;
-    white-space: nowrap;
-    opacity: 0;
-    transition: opacity 0.3s;
-    pointer-events: none;
-    transform: translateY(-53px);
-  }
-
-  .tooltip-container {
-    position: relative;
-    display: inline-block;
-  }
-
-  .tooltip-container:hover .tooltip {
-    opacity: 1;
-  }
-		
     </style>
 </head>
 <body>
     <iframe id="gameIframe"></iframe>
     <div class="control-bar" id="controlBar">
-    <button class="tooltip-container" onclick="window.location.href='games.html'">
-        <img src="textures/icons/back.png" alt="Back">
-        <div class="tooltip">Go Back</div>
-    </button>
-    <button class="tooltip-container" onclick="toggleFullscreen()">
-        <img src="textures/icons/fullscreen.png" alt="Fullscreen">
-        <div class="tooltip">Toggle Fullscreen</div>
-    </button>
-    <button class="tooltip-container" onclick="reloadIframe()">
-        <img src="textures/icons/reload.png" alt="Reload">
-        <div class="tooltip">Reload Game</div>
-    </button>
-    <div class="game-name" id="gameName">
-        Game Name
+        <button class="tooltip-container" onclick="window.location.href='games.html'">
+            <img src="textures/icons/back.png" alt="Back">
+            <div class="tooltip">Go Back</div>
+        </button>
+        <button class="tooltip-container" onclick="toggleFullscreen()">
+            <img src="textures/icons/fullscreen.png" alt="Fullscreen">
+            <div class="tooltip">Toggle Fullscreen</div>
+        </button>
+        <button class="tooltip-container" onclick="reloadIframe()">
+            <img src="textures/icons/reload.png" alt="Reload">
+            <div class="tooltip">Reload Game</div>
+        </button>
+        <div class="game-name-container">
+            <div class="game-name" id="gameName">
+                Game Name
+            </div>
+        </div>
     </div>
-</div>
 
     <script>
     const params = new URLSearchParams(window.location.search);
@@ -237,7 +210,7 @@
             controlBar.classList.add("visible");
         }
     });
-</script>
+    </script>
 
 </body>
 </html>
