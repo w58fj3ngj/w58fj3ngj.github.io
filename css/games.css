@@ -7,31 +7,6 @@ body {
     overflow-x: hidden;
 }
 
-::-webkit-scrollbar {
-    width: 8px; /* Skinny scrollbar */
-}
-
-::-webkit-scrollbar-track {
-    background: transparent; /* or use a subtle color if desired */
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: #fff; /* White thumb */
-    border-radius: 4px;
-    box-shadow: 0 0 6px rgba(255, 255, 255, 0.8); /* Glowy effect */
-    transition: background-color 0.3s;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background-color: #f0f0f0; /* Slightly change on hover if desired */
-}
-
-/* For Firefox */
-* {
-    scrollbar-width: thin; /* Makes the scrollbar skinny */
-    scrollbar-color: #fff transparent; /* White thumb on transparent track */
-}
-
 /* Top Navigation Bar */
 .topnav {
     background-color: #090909; /* Darker Purple */
