@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Onest:wght@100..900&family=Outfit:wght@100..900&display=swap"
-    rel="stylesheet"
-  />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Onest:wght@100..900&family=Outfit:wght@100..900&display=swap" rel="stylesheet">
   <title>Game Player</title>
   <style>
     body {
@@ -21,7 +18,6 @@
       background-color: #090909;
       overflow: hidden;
     }
-
     iframe {
       width: 100%;
       height: 100%;
@@ -31,7 +27,6 @@
       left: 0;
       z-index: 0;
     }
-
     .control-bar {
       position: fixed;
       align-items: center;
@@ -40,7 +35,7 @@
       bottom: 0;
       width: 30%;
       display: flex;
-      gap: 10px;
+      gap: 5px;
       background: #090909;
       padding: 5px;
       border-radius: 50px;
@@ -49,14 +44,12 @@
       transform: translateY(100%);
       z-index: 1000;
       height: 50px;
-      box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.8);
+      box-shadow: 0px 7px 17px rgba(0, 0, 0, 0.8);
     }
-
     .control-bar.visible {
       opacity: 1;
       transform: translateY(-10px);
     }
-
     .control-bar button {
       background: #090909;
       border: none;
@@ -68,22 +61,19 @@
       justify-content: center;
       align-items: center;
       transition: all 0.3s;
+	  margin-left: 7px;
     }
-
     .control-bar button:active {
       transform: scale(0.9);
     }
-
     .control-bar button img {
       width: 30px;
       height: 30px;
       transition: filter 0.2s ease-in-out;
     }
-
     .control-bar button:hover img {
       filter: brightness(0.6);
     }
-
     .game-name-container {
       flex-grow: 1; /* Takes up remaining space */
       display: flex;
@@ -91,7 +81,6 @@
       position: relative; /* Allows positioning */
       margin-left: -27px; /* Makes the container overlap 10px to the left */
     }
-
     .game-name {
       color: white;
       font-size: 20px;
@@ -101,15 +90,12 @@
       align-items: center;
       z-index: 1100;
     }
-
     .tooltip-container {
       position: relative;
     }
-
     .tooltip-container:hover .tooltip {
       opacity: 1;
     }
-
     .tooltip {
       position: absolute;
       background: #090909;
@@ -127,21 +113,23 @@
 </head>
 <body>
   <iframe id="gameIframe"></iframe>
-  <div class="control-bar visible" id="controlBar">
+  <div class="control-bar" id="controlBar">
     <button class="tooltip-container" onclick="window.location.href='games.html'">
-      <img src="textures/icons/back.png" alt="Back" />
+      <img src="textures/icons/back.png" alt="Back">
       <div class="tooltip">Go Back</div>
     </button>
-    <button class="tooltip-container" onclick="toggleFullscreen()">
-      <img src="textures/icons/fullscreen.png" alt="Fullscreen" />
-      <div class="tooltip">Toggle Fullscreen</div>
+    <button class="tooltip-container" onclick="enterFullscreen()">
+      <img src="textures/icons/fullscreen.png" alt="Fullscreen">
+      <div class="tooltip">Fullscreen</div>
     </button>
     <button class="tooltip-container" onclick="reloadIframe()">
-      <img src="textures/icons/reload.png" alt="Reload" />
+      <img src="textures/icons/reload.png" alt="Reload">
       <div class="tooltip">Reload Game</div>
     </button>
     <div class="game-name-container">
-      <div class="game-name" id="gameName">Game Name</div>
+      <div class="game-name" id="gameName">
+        Game Name
+      </div>
     </div>
   </div>
 
@@ -152,55 +140,40 @@
     const controlBar = document.getElementById('controlBar');
     const iframe = document.getElementById('gameIframe');
     const gameNameElement = document.getElementById('gameName');
-
+    const popupMenu = document.getElementById('popupMenu');
+    
     if (gameUrl) {
       iframe.src = gameUrl;
     } else {
-      document.body.innerHTML =
-        '<p style="color: white; text-align: center;">No game URL provided.</p>';
+      document.body.innerHTML = '<p style="color: white; text-align: center;">No game URL provided.</p>';
     }
-
+    
     if (gameName) {
       gameNameElement.textContent = gameName;
     } else {
       gameNameElement.textContent = 'Unknown Game';
     }
-
-    // Enhanced toggleFullscreen function using every available method
-    function toggleFullscreen() {
-      const docElm = document.documentElement;
-      const isFullscreen =
-        document.fullscreenElement ||
-        document.webkitFullscreenElement ||
-        document.mozFullScreenElement ||
-        document.msFullscreenElement;
-
-      if (!isFullscreen) {
-        if (docElm.requestFullscreen) {
-          docElm.requestFullscreen();
-        } else if (docElm.mozRequestFullScreen) {
-          docElm.mozRequestFullScreen();
-        } else if (docElm.webkitRequestFullscreen) {
-          // Safari requires Element.ALLOW_KEYBOARD_INPUT for keyboard input
-          docElm.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
-        } else if (docElm.msRequestFullscreen) {
-          docElm.msRequestFullscreen();
-        } else {
-          console.warn("Fullscreen API is not supported by this browser.");
-        }
-      } else {
-        if (document.exitFullscreen) {
-          document.exitFullscreen();
-        } else if (document.webkitExitFullscreen) {
-          document.webkitExitFullscreen();
-        } else if (document.mozCancelFullScreen) {
-          document.mozCancelFullScreen();
-        } else if (document.msExitFullscreen) {
-          document.msExitFullscreen();
+    
+    gameNameElement.addEventListener('click', () => {
+      popupMenu.classList.toggle('visible');
+    });
+    
+    // Function that forces the page into fullscreen mode using all available methods.
+    function enterFullscreen() {
+      if (!document.fullscreenElement) {
+        const elem = document.documentElement;
+        if (elem.requestFullscreen) {
+          elem.requestFullscreen();
+        } else if (elem.mozRequestFullScreen) { // Firefox
+          elem.mozRequestFullScreen();
+        } else if (elem.webkitRequestFullscreen) { // Chrome, Safari and Opera
+          elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) { // IE/Edge
+          elem.msRequestFullscreen();
         }
       }
     }
-
+    
     function reloadIframe() {
       const src = iframe.src;
       iframe.src = "";
@@ -208,40 +181,36 @@
         iframe.src = src;
       }, 100);
     }
-
-    // This function checks various fullscreen indicators,
-    // including comparing the window's size to the screen size
-    // (which can help detect F11 fullscreen mode).
-    function checkFullscreen() {
-      if (
-        document.fullscreenElement ||
-        document.webkitFullscreenElement ||
-        document.mozFullScreenElement ||
-        document.msFullscreenElement ||
-        (window.innerWidth === screen.width && window.innerHeight === screen.height)
-      ) {
+    
+    let isControlBarVisible = false;
+    
+    function toggleControlBar() {
+      if (isControlBarVisible) {
+        controlBar.classList.remove("visible");
+      } else {
+        controlBar.classList.add("visible");
+      }
+      isControlBarVisible = !isControlBarVisible;
+    }
+    
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        controlBar.classList.add("visible");
+      }, 50);
+    });
+    
+    // Hides the control bar when in fullscreen mode (detected by either the Fullscreen API or window size)
+    function updateControlBarVisibility() {
+      const inFullscreen = document.fullscreenElement || (Math.abs(window.innerHeight - screen.height) < 20);
+      if (inFullscreen) {
         controlBar.classList.remove("visible");
       } else {
         controlBar.classList.add("visible");
       }
     }
-
-    // Listen for fullscreen changes (for Fullscreen API usage)
-    document.addEventListener("fullscreenchange", checkFullscreen);
-    document.addEventListener("webkitfullscreenchange", checkFullscreen);
-    document.addEventListener("mozfullscreenchange", checkFullscreen);
-    document.addEventListener("MSFullscreenChange", checkFullscreen);
-
-    // Also listen for window resize, which can indicate F11 fullscreen mode.
-    window.addEventListener("resize", checkFullscreen);
-
-    // Optionally, intercept F11 key presses (if they occur on the document)
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "F11" || e.keyCode === 122) {
-        e.preventDefault();
-        toggleFullscreen();
-      }
-    });
+    
+    document.addEventListener("fullscreenchange", updateControlBarVisibility);
+    window.addEventListener("resize", updateControlBarVisibility);
   </script>
 </body>
 </html>
