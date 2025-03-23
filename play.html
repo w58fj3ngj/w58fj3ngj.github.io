@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Onest:wght@100..900&family=Outfit:wght@100..900&display=swap"
     rel="stylesheet"
@@ -126,22 +125,23 @@
   </div>
   <script>
     const params = new URLSearchParams(window.location.search);
-    const gameUrl = params.get('url');
-    const gameName = params.get('name');
-    const controlBar = document.getElementById('controlBar');
-    const iframe = document.getElementById('gameIframe');
-    const gameNameElement = document.getElementById('gameName');
+    const gameUrl = params.get("url");
+    const gameName = params.get("name");
+    const controlBar = document.getElementById("controlBar");
+    const iframe = document.getElementById("gameIframe");
+    const gameNameElement = document.getElementById("gameName");
 
     if (gameUrl) {
       iframe.src = gameUrl;
     } else {
-      document.body.innerHTML = '<p style="color: white; text-align: center;">No game URL provided.</p>';
+      document.body.innerHTML =
+        '<p style="color: white; text-align: center;">No game URL provided.</p>';
     }
 
     if (gameName) {
       gameNameElement.textContent = gameName;
     } else {
-      gameNameElement.textContent = 'Unknown Game';
+      gameNameElement.textContent = "Unknown Game";
     }
 
     // Cross-browser fullscreen check
@@ -154,9 +154,8 @@
       );
     }
 
-    // Fallback check using window size (for F11 or Chromebook fullscreen)
+    // Fallback check using window size (for F11/Chromebook fullscreen)
     function isWindowFullscreen() {
-      // Check if the window innerHeight is close to the screen height (tolerance of 20px)
       return Math.abs(window.innerHeight - screen.height) < 20;
     }
 
@@ -183,8 +182,8 @@
       }, 100);
     }
 
+    // Update iframe and control bar display based on fullscreen state.
     function updateDisplay() {
-      // If the document is in fullscreen mode or window height is nearly equal to screen height, treat it as fullscreen.
       if (isFullscreen() || isWindowFullscreen()) {
         iframe.style.height = "100vh";
         iframe.style.width = "100vw";
@@ -196,12 +195,19 @@
       }
     }
 
-    // Listen for fullscreen changes across browsers
+    // Listen for various events to detect exit from fullscreen.
     document.addEventListener("fullscreenchange", updateDisplay);
     document.addEventListener("webkitfullscreenchange", updateDisplay);
     document.addEventListener("mozfullscreenchange", updateDisplay);
     document.addEventListener("MSFullscreenChange", updateDisplay);
     window.addEventListener("resize", updateDisplay);
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        updateDisplay();
+      }
+    });
+    document.addEventListener("visibilitychange", updateDisplay);
+    window.addEventListener("orientationchange", updateDisplay);
   </script>
 </body>
 </html>
