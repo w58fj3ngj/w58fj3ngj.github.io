@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/index.css">
+	<link rel="manifest" href="/manifest.json">
     <style>
         /* Fade-in animation keyframes */
 @keyframes fadeIn {
@@ -49,7 +50,6 @@
         </div>
     </nav>
 
-    <!-- About and Social Links Section -->
     <div class="info-box">
         <h1>About Coolio</h1>
         <p>Coolio is your final destination for discovering and playing cool games! Browse a variety of games, use a proxy (coming soon), and tweak settings to fit your mood. Our platform is all about simplicity and performance.</p>
@@ -63,7 +63,6 @@
             </a>
 			<a href="https://github.com/w58fj3ngj/w58fj3ngj.github.io" target="_blank" class="social-link">
                 <img src="textures/icons/github.png" alt="Github" class="social-icon">
-            </a>
             </a>
         </div>
     </div>
@@ -81,13 +80,15 @@
     <script>
         // Existing script for background and game button functionality
         window.onload = function() {
-            const savedBackground = localStorage.getItem('backgroundImage');
-            if (savedBackground) {
-                document.body.style.backgroundImage = `url(${savedBackground})`;
-                document.body.style.backgroundSize = 'cover';
-                document.body.style.backgroundPosition = 'center center';
-            }
-        };
+    const savedBackground = localStorage.getItem('backgroundImage');
+    if (savedBackground) {
+        document.body.style.backgroundImage = `url(${savedBackground})`;
+    } else {
+        document.body.style.background = 'linear-gradient(to right, #4facfe, #00f2fe)'; // Default gradient
+    }
+    document.body.style.backgroundSize = 'cover';
+    document.body.style.backgroundPosition = 'center center';
+};
 
         document.querySelectorAll('.game-button').forEach(button => {
             button.addEventListener('click', () => {
@@ -96,6 +97,28 @@
                 window.location.href = `play.html?url=${encodeURIComponent(url)}&name=${encodeURIComponent(gameName)}`;
             });
         });
+		
+		if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/service-worker.js')
+    .then(() => console.log('Service Worker Registered'))
+    .catch(error => console.error('Service Worker Registration Failed:', error));
+}
+
+document.getElementById('install-btn').addEventListener('click', () => {
+  if (installPrompt) {
+    installPrompt.prompt();
+    installPrompt.userChoice.then((choiceResult) => {
+      if (choiceResult.outcome === 'accepted') {
+        console.log('User accepted the install prompt');
+        document.getElementById('install-btn').style.display = 'none';
+      } else {
+        console.log('User dismissed the install prompt');
+      }
+      installPrompt = null;
+    });
+  }
+});
+
     </script>
 </body>
 </html>
