@@ -64,6 +64,9 @@
 			<a href="https://github.com/w58fj3ngj/w58fj3ngj.github.io" target="_blank" class="social-link">
                 <img src="textures/icons/github.png" alt="Github" class="social-icon">
             </a>
+			<a href="#" id="install-btn" class="social-link">
+    <img src="textures/icons/install.png" alt="Install App" class="social-icon">
+</a>
         </div>
     </div>
 
@@ -99,24 +102,36 @@
         });
 		
 		if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/service-worker.js')
-    .then(() => console.log('Service Worker Registered'))
-    .catch(error => console.error('Service Worker Registration Failed:', error));
+    navigator.serviceWorker.register('/service-worker.js')
+        .then(() => console.log('Service Worker Registered'))
+        .catch(error => console.error('Service Worker Registration Failed:', error));
 }
 
+let installPrompt;
+
+window.addEventListener('beforeinstallprompt', (event) => {
+    event.preventDefault();
+    installPrompt = event;
+    
+    // Show the install button
+    const installBtn = document.getElementById('install-btn');
+    if (installBtn) {
+        installBtn.style.display = 'inline-block';
+    }
+});
+
 document.getElementById('install-btn').addEventListener('click', () => {
-  if (installPrompt) {
-    installPrompt.prompt();
-    installPrompt.userChoice.then((choiceResult) => {
-      if (choiceResult.outcome === 'accepted') {
-        console.log('User accepted the install prompt');
-        document.getElementById('install-btn').style.display = 'none';
-      } else {
-        console.log('User dismissed the install prompt');
-      }
-      installPrompt = null;
-    });
-  }
+    if (installPrompt) {
+        installPrompt.prompt();
+        installPrompt.userChoice.then((choiceResult) => {
+            if (choiceResult.outcome === 'accepted') {
+                console.log('User accepted the install prompt');
+            } else {
+                console.log('User dismissed the install prompt');
+            }
+            installPrompt = null;
+        });
+    }
 });
 
     </script>
