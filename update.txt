@@ -1,6 +1,0 @@
-March 2025: Added new game categories and improved search functionality.
-February 2025: Optimized proxy server for faster performance.
-January 2025: Fixed a bug in the game loading feature.
-December 2024: Major UI overhaul for smoother navigation.
-November 2024: Added support for new game formats and proxies.
-October 2024: Initial release of Coolio!
