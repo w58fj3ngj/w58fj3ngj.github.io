@@ -107,32 +107,31 @@
         .catch(error => console.error('Service Worker Registration Failed:', error));
 }
 
-let installPrompt;
+    let installPrompt;
 
-window.addEventListener('beforeinstallprompt', (event) => {
+    window.addEventListener('beforeinstallprompt', (event) => {
+    console.log("beforeinstallprompt event fired!");
     event.preventDefault();
     installPrompt = event;
-    
-    // Show the install button
-    const installBtn = document.getElementById('install-btn');
-    if (installBtn) {
-        installBtn.style.display = 'inline-block';
-    }
 });
 
-document.getElementById('install-btn').addEventListener('click', () => {
-    if (installPrompt) {
-        installPrompt.prompt();
-        installPrompt.userChoice.then((choiceResult) => {
-            if (choiceResult.outcome === 'accepted') {
-                console.log('User accepted the install prompt');
-            } else {
-                console.log('User dismissed the install prompt');
-            }
-            installPrompt = null;
-        });
-    }
-});
+    document.getElementById('install-btn').addEventListener('click', (event) => {
+        event.preventDefault(); // Prevent default link behavior
+
+        if (installPrompt) {
+            installPrompt.prompt();
+            installPrompt.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('User accepted the install prompt');
+                } else {
+                    console.log('User dismissed the install prompt');
+                }
+                installPrompt = null; // Clear the prompt so it doesn't trigger again
+            });
+        } else {
+            alert("Your browser doesn't support app installation or the prompt is unavailable.");
+        }
+    });
 
     </script>
 </body>
