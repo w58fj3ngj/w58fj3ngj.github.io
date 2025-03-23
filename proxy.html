@@ -4,27 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Proxy</title>
+	<link rel="icon" href="textures/icons/logo.png" type="image/png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/proxy.css">
 </head>
 <body>
-    <!-- Top Navigation Bar -->
     <nav class="topnav">
         <div class="logo">
-            <a href="index.html">Camden's Games</a>
+            <a href="index.html" class="logo-button">
+    <img src="textures/icons/logo.png" alt="Logo">
+    <span>Coolio</span>
+</a>
         </div>
         <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="games.html">Games</a>
-            <a href="proxy.html" class="active">Proxy</a>
-            <a href="settings.html">Settings</a>
-        </div>
-    </nav>
+    <a href="games.html"><img src="textures/icons/games.png"> Games</a>
+    <a href="proxy.html" class="active"><img src="textures/icons/proxy.png"> Proxy</a>
+    <a href="settings.html"><img src="textures/icons/settings.png"> Settings</a>
+</div>
+</nav>
 
-    <!-- Proxy Form -->
-    <section class="proxy-form">
-        <h1>coming very soon</h1>
+    <section class="proxy-section">
 
     </section>
 
+    <script>
+        window.onload = function() {
+            const savedBackground = localStorage.getItem('backgroundImage');
+            if (savedBackground) {
+                document.body.style.backgroundImage = `url(${savedBackground})`;
+                document.body.style.backgroundSize = 'cover';
+                document.body.style.backgroundPosition = 'center center';
+            }
+        };
+
+        document.getElementById('uploadBtn').addEventListener('click', () => {
+            document.getElementById('fileInput').click();
+        });
+
+        document.getElementById('fileInput').addEventListener('change', function() {
+            const file = this.files[0];
+            const errorMessage = document.getElementById('error-message');
+
+            errorMessage.style.display = 'none';
+
+            if (file) {
+                const reader = new FileReader();
+
+                reader.onload = function(event) {
+                    const backgroundImageUrl = event.target.result;
+                    document.body.style.backgroundImage = `url(${backgroundImageUrl})`;
+                    document.body.style.backgroundSize = 'cover';
+                    document.body.style.backgroundPosition = 'center center';
+                    localStorage.setItem('backgroundImage', backgroundImageUrl);
+                };
+
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
 </body>
 </html>

@@ -4,62 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Games</title>
-	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="icon" href="textures/icons/logo.png" type="image/png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Onest:wght@100..900&family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/games.css">
 </head>
 <body>
-    <!-- Top Navigation Bar -->
     <nav class="topnav">
-    <div class="logo">
-        <a href="index.html">Camden's Games</a>
-    </div>
-    <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="games.html" class="active">Games</a>
-        <a href="proxy.html">Proxy</a>
-        <a href="settings.html">Settings</a>
-    </div>
+        <div class="logo">
+            <a href="index.html" class="logo-button">
+    <img src="textures/icons/logo.png" alt="Logo">
+    <span>Coolio</span>
+</a>
+        </div>
+        <div class="nav-links">
+    <a href="games.html" class="active"> <img src="textures/icons/games.png"> Games</a>
+    <a href="proxy.html"> <img src="textures/icons/proxy.png"> Proxy</a>
+    <a href="settings.html"> <img src="textures/icons/settings.png"> Settings</a>
+</div>
 </nav>
-
-    <!-- Games Section -->
+    
     <section class="games-section">
-        <h1>Games</h1>
-
-		<div class="search-container" style="text-align: center;">
-      <div class="textInputWrapper">
-        <input type="text" id="searchInput" class="textInput" placeholder="Search games..." />
-      </div>
-    </div>
+        <div class="search-container" style="text-align: center;">
+            <div class="textInputWrapper">
+                <input type="text" id="searchInput" class="textInput" placeholder="Search games" />
+            </div>
+        </div>
+        
         <div class="games-container">
-            <!-- Example Game Button -->
             <div class="game-button" data-url="https://docs.google.com/forms/d/e/1FAIpQLSfGL1e7OqLF33SESfHseKldPbCApT5INSAiy2gx7-nUQJaUvQ/viewform" data-name="Suggestion">
-    <img src="textures/icons/suggestion.webp" alt="Game">
-    <p class="game-title">Suggestion</p>
-</div>
+                <img src="textures/icons/suggestion.webp" alt="Game">
+                <p class="game-title">Suggestion</p>
+            </div>
 
-<div class="game-button" data-url="games/boxing-random/index.html" data-name="Boxing Random">
-    <img src="textures/games/boxingrandom.webp" alt="Game">
-    <p class="game-title">Boxing Random</p>
-</div>
+            <div class="game-button" data-url="games/boxing-random/index.html" data-name="Boxing Random">
+                <img src="textures/games/boxingrandom.webp" alt="Game">
+                <p class="game-title">Boxing Random</p>
+            </div>
 
-<div class="game-button" data-url="games/volley-random/index.html" data-name="Volley Random">
-    <img src="textures/games/volleyrandom.webp" alt="Game">
-    <p class="game-title">Volley Random</p>
-</div>
+            <div class="game-button" data-url="games/volley-random/index.html" data-name="Volley Random">
+                <img src="textures/games/volleyrandom.webp" alt="Game">
+                <p class="game-title">Volley Random</p>
+            </div>
 
-<div class="game-button" data-url="games/basket-random/index.html" data-name="Basket Random">
-    <img src="textures/games/basketrandom.webp" alt="Game">
-    <p class="game-title">Basket Random</p>
-</div>
+            <div class="game-button" data-url="games/basket-random/index.html" data-name="Basket Random">
+                <img src="textures/games/basketrandom.webp" alt="Game">
+                <p class="game-title">Basket Random</p>
+            </div>
 
-<div class="game-button" data-url="games/soccer-random/index.html" data-name="Soccer Random">
-    <img src="textures/games/soccerrandom.webp" alt="Game">
-    <p class="game-title">Soccer Random</p>
-</div>
-
-<div class="game-button" data-url="games/blockblast/index.html" data-name="Block Blast">
+            <div class="game-button" data-url="games/soccer-random/index.html" data-name="Soccer Random">
+                <img src="textures/games/soccerrandom.webp" alt="Game">
+                <p class="game-title">Soccer Random</p>
+            </div>
+			
+			<div class="game-button" data-url="games/blockblast/index.html" data-name="Block Blast">
     <img src="textures/games/blockblast.webp" alt="Game">
     <p class="game-title">Block Blast</p>
 </div>
@@ -393,31 +392,35 @@
     <img src="textures/games/badicecream.webp" alt="Bad Ice-Cream">
     <p class="game-title">Bad Ice-Cream</p>
 </div>
-
-			
-			
-
         </div>
     </section>
-	
-    <script>
-	document.querySelectorAll('.game-button').forEach(button => {
-    button.addEventListener('click', () => {
-        const url = button.getAttribute('data-url');
-        const gameName = button.getAttribute('data-name');
-        window.location.href = `play.html?url=${encodeURIComponent(url)}&name=${encodeURIComponent(gameName)}`;
-    });
-});
 
-document.getElementById('searchInput').addEventListener('input', function () {
-      const searchValue = this.value.toLowerCase();
-      document.querySelectorAll('.game-button').forEach(button => {
-        const gameName = button.getAttribute('data-name').toLowerCase();
-        // Show button if its data-name includes the search value, otherwise hide it
-        button.style.display = gameName.includes(searchValue) ? 'inline-block' : 'none';
-      });
-    });
-	
-	</script>
+    <script>
+        // Check if there's a saved background in localStorage and apply it
+        window.onload = function() {
+            const savedBackground = localStorage.getItem('backgroundImage');
+            if (savedBackground) {
+                document.body.style.backgroundImage = `url(${savedBackground})`;
+                document.body.style.backgroundSize = 'cover';
+                document.body.style.backgroundPosition = 'center center';
+            }
+        };
+
+        document.querySelectorAll('.game-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const url = button.getAttribute('data-url');
+                const gameName = button.getAttribute('data-name');
+                window.location.href = `play.html?url=${encodeURIComponent(url)}&name=${encodeURIComponent(gameName)}`;
+            });
+        });
+
+        document.getElementById('searchInput').addEventListener('input', function () {
+            const searchValue = this.value.toLowerCase();
+            document.querySelectorAll('.game-button').forEach(button => {
+                const gameName = button.getAttribute('data-name').toLowerCase();
+                button.style.display = gameName.includes(searchValue) ? 'inline-block' : 'none';
+            });
+        });
+    </script>
 </body>
 </html>

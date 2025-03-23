@@ -4,27 +4,122 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Settings</title>
+	<link rel="icon" href="textures/icons/logo.png" type="image/png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/settings.css">
 </head>
 <body>
-    <!-- Top Navigation Bar -->
     <nav class="topnav">
         <div class="logo">
-            <a href="index.html">Camden's Games</a>
+            <a href="index.html" class="logo-button">
+    <img src="textures/icons/logo.png" alt="Logo">
+    <span>Coolio</span>
+</a>
         </div>
         <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="games.html">Games</a>
-            <a href="proxy.html">Proxy</a>
-            <a href="settings.html" class="active">Settings</a>
+    <a href="games.html"> <img src="textures/icons/games.png"> Games</a>
+    <a href="proxy.html"> <img src="textures/icons/proxy.png"> Proxy</a>
+    <a href="settings.html" class="active"> <img src="textures/icons/settings.png"> Settings</a>
+</div>
+</nav>
+
+    <section class="settings-section">
+        <div class="settings-box">
+            <h2 class="settings-title">Background</h2>
+            <p class="settings-description">
+                Change the background of the site to one of the presets, or upload your own. 
+                <a href="https://wallpaperswide.com/" target="_blank" class="settings-link">https://wallpaperswide.com/</a>
+            </p>
+            <div class="settings-buttons">
+                <button class="settings-button" id="uploadBtn">Upload</button>
+
+                <div class="dropdown">
+                    <button class="settings-button">Presets</button>
+                    <div class="dropdown-content">
+						<button id="default">None</button>
+                        <button id="preset1">Nebula</button>
+                        <button id="preset2">Bluebird</button>
+                        <button id="preset3">Lake Mountains</button>
+						<button id="preset4">Dominic</button>
+                    </div>
+                </div>
+            </div>
         </div>
-    </nav>
-
-    <!-- Settings Form -->
-    <section class="settings-form">
-        <h1>coming soon</h1>
-
+        <input type="file" id="fileInput" style="display: none;">
+        <p id="error-message" style="color: red; display: none;"></p>
     </section>
 
+    <script>
+        // Check if there's a saved background in localStorage and apply it
+        window.onload = function() {
+            const savedBackground = localStorage.getItem('backgroundImage');
+            if (savedBackground) {
+                document.body.style.backgroundImage = `url(${savedBackground})`;
+                document.body.style.backgroundSize = 'cover';
+                document.body.style.backgroundPosition = 'center center';
+            }
+        };
+
+        // Upload button opens file explorer
+        document.getElementById('uploadBtn').addEventListener('click', () => {
+            document.getElementById('fileInput').click();
+        });
+
+        // Handle the file input change event
+        document.getElementById('fileInput').addEventListener('change', function() {
+            const file = this.files[0];
+            const errorMessage = document.getElementById('error-message');
+
+            // Reset error message
+            errorMessage.style.display = 'none';
+
+            if (file) {
+                const reader = new FileReader();
+
+                reader.onload = function(event) {
+                    // Set the image as the background of the body
+                    const backgroundImageUrl = event.target.result;
+                    document.body.style.backgroundImage = `url(${backgroundImageUrl})`;
+                    document.body.style.backgroundSize = 'cover';
+                    document.body.style.backgroundPosition = 'center center';
+
+                    // Save the background image URL to localStorage
+                    localStorage.setItem('backgroundImage', backgroundImageUrl);
+                };
+
+                reader.readAsDataURL(file);
+            }
+        });
+
+		document.getElementById('default').addEventListener('click', () => {
+            setBackground('textures/backgrounds/default.png');
+        });
+
+	    document.getElementById('preset1').addEventListener('click', () => {
+            setBackground('textures/backgrounds/nebula.png');
+        });
+
+        document.getElementById('preset2').addEventListener('click', () => {
+            setBackground('textures/backgrounds/bluebird.png');
+        });
+
+        document.getElementById('preset3').addEventListener('click', () => {
+            setBackground('textures/backgrounds/lakemountains.png');
+        });
+		
+		document.getElementById('preset4').addEventListener('click', () => {
+            setBackground('textures/backgrounds/dominic.png');
+        });
+
+        // Set the background and save to localStorage
+        function setBackground(imageUrl) {
+            document.body.style.backgroundImage = `url(${imageUrl})`;
+            document.body.style.backgroundSize = 'cover';
+            document.body.style.backgroundPosition = 'center center';
+            localStorage.setItem('backgroundImage', imageUrl);
+        }
+    </script>
 </body>
 </html>

@@ -3,29 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Homepage</title>
-	<link rel="preconnect" href="https://fonts.googleapis.com">
+    <title>Coolio</title>
+    <link rel="icon" href="textures/icons/logo.png" type="image/png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Onest:wght@100..900&family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/index.css">
+    <style>
+        /* Fade-in animation keyframes */
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* Apply fade-in effect for About Coolio */
+.info-box {
+    animation: fadeIn 0.5s ease-out forwards; /* Add 'forwards' to retain final state */
+    opacity: 0;
+    animation-delay: 0.3s; /* Delay for the About Coolio */
+}
+
+/* Apply fade-in effect for Update Log */
+.update-log {
+    animation: fadeIn 1s ease-out forwards; /* Add 'forwards' to retain final state */
+    opacity: 0;
+    animation-delay: 1s; /* Delay for the Update Log */
+}
+
+
+        /* Add any additional styling you need for the page */
+    </style>
 </head>
 <body>
-    <!-- Top Navigation Bar -->
     <nav class="topnav">
-    <div class="logo">
-        <a href="index.html">Camden's Games</a>
-    </div>
-    <div class="nav-links">
-        <a href="index.html" class="active">Home</a>
-        <a href="games.html">Games</a>
-        <a href="proxy.html">Proxy</a>
-        <a href="settings.html">Settings</a>
-    </div>
-</nav>
+        <div class="logo">
+            <a href="index.html" class="logo-button">
+                <img src="textures/icons/logo.png" alt="Logo">
+                <span>Coolio</span>
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="games.html"><img src="textures/icons/games.png"> Games</a>
+            <a href="proxy.html"><img src="textures/icons/proxy.png"> Proxy</a>
+            <a href="settings.html"><img src="textures/icons/settings.png"> Settings</a>
+        </div>
+    </nav>
 
-    <!-- Main Content -->
-    <section class="main-content">
-        <h1>pro game website lol</h1>
-    </section>
+    <!-- About and Social Links Section -->
+    <div class="info-box">
+        <h1>About Coolio</h1>
+        <p>Coolio is your final destination for discovering and playing cool games! Browse a variety of games, use a proxy (coming soon), and tweak settings to fit your mood. Our platform is all about simplicity and performance.</p>
+
+        <div class="social-links">
+            <a href="https://discord.gg/UsVTvVtWw3" target="_blank" class="social-link">
+                <img src="textures/icons/discord.png" alt="Discord" class="social-icon">
+            </a>
+            <a href="https://www.youtube.com/@cooliounblockedgames" target="_blank" class="social-link">
+                <img src="textures/icons/youtube.png" alt="Youtube" class="social-icon">
+            </a>
+            </a>
+        </div>
+    </div>
+
+    <!-- Update Log Section -->
+    <div class="update-log">
+        <h2>Update Log</h2>
+        <div class="update-log-content" id="update-log-content">
+            <!-- Static text for the update log -->
+            <p><strong>Version 1.0</strong></p>
+            <p>-Massive revamp</p>
+        </div>
+    </div>
+
+    <script>
+        // Existing script for background and game button functionality
+        window.onload = function() {
+            const savedBackground = localStorage.getItem('backgroundImage');
+            if (savedBackground) {
+                document.body.style.backgroundImage = `url(${savedBackground})`;
+                document.body.style.backgroundSize = 'cover';
+                document.body.style.backgroundPosition = 'center center';
+            }
+        };
+
+        document.querySelectorAll('.game-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const url = button.getAttribute('data-url');
+                const gameName = button.getAttribute('data-name');
+                window.location.href = `play.html?url=${encodeURIComponent(url)}&name=${encodeURIComponent(gameName)}`;
+            });
+        });
+    </script>
 </body>
 </html>

@@ -1,168 +1,249 @@
 body {
-    background-color: #111; /* Dark Purple */
+    background-color: #111;
     color: white;
-    font-family: Verdana, sans-serif;
+    font-family: "Montserrat", sans-serif;
     margin: 0;
     padding: 0;
     overflow-x: hidden;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+    animation: fadeInBlur 0.3s ease-out;
+	transition: background 0.3s ease-in-out;
 }
 
-/* Top Navigation Bar */
+::-webkit-scrollbar {
+    width: 7px; /* Width of the scrollbar */
+    height: 10px; /* Height of the scrollbar for horizontal scrolling */
+}
+
+/* Style the track (part the thumb moves along) */
+::-webkit-scrollbar-track {
+    background: #151515; /* Dark background for the scrollbar track */
+    border-radius: 10px;
+}
+
+/* Style the thumb (the draggable part of the scrollbar) */
+::-webkit-scrollbar-thumb {
+    background: #222; /* Color of the thumb */
+    border-radius: 10px;
+}
+
+/* Style for the scrollbar when it's on the right */
+::-webkit-scrollbar-corner {
+    background: #333; /* Dark background for the corner */
+}
+
+@keyframes fadeInBlur {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
 .topnav {
-    background-color: #090909; /* Darker Purple */
+    background: rgba(0, 0, 0, 0.7);
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 25px;
-    height: 65px;
+    height: 80px;
+    width: 70%;
+    margin: 30px auto;
+    border-radius: 25px;
+    border: 2px solid rgba(0, 0, 0, 0.9);
+    box-shadow: 0 7px 9px rgba(0, 0, 0, 0.5);
+	user-select: none;
 }
 
-.logo a {
+.logo-button {
+    display: flex;
+    align-items: center;
     color: white;
     text-decoration: none;
-    font-size: 20px;
-    font-weight: 500;
-    font-family: Verdana, sans-serif;
+    font-size: 25px;
+    font-weight: bold;
+    transition: all 0.3s;
+	padding: 8px 10px;
+	border-radius: 7px;
 }
 
-/* Nav Links */
+.logo-button:active {
+	transform: scale(0.95);
+}
+
+.logo-button img {
+    height: 35px;
+    width: auto;
+    margin-right: 10px;
+}
+
+.logo-button:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.nav-links {
+    display: flex;           
+    justify-content: center; 
+    gap: 16px;               
+}
+
 .nav-links a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     position: relative;
     color: white;
-    padding: 12px 20px;
+    width: 75px;
+    height: 70px;
     text-decoration: none;
     text-align: center;
-    font-size: 17px;
-    transition: background-color 0.3s, color 0.3s;
+    font-size: 15px;
+    transition: all 0.3s;
+    font-weight: 500;
+    border-radius: 7px;
 }
 
-/* Underline Effect */
+.nav-links a.active {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+
+.nav-links a img {
+    width: 30px;
+    height: 30px;
+    margin: 0 0 5px 0;
+}
+
+.nav-links a:active {
+	transform: scale(0.95);
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+	background-color: rgba(255, 255, 255, 0.3);
+}
+
 .nav-links a::after {
     content: "";
     position: absolute;
     left: 50%;
     bottom: 0;
     transform: translateX(-50%);
-    width: 0;
-    height: 2px;
-    background-color: #fff;
     transition: width 0.3s ease;
 }
 
 .nav-links a:hover::after,
 .nav-links a.active::after {
-    width: 100%;
+    background-color: rgba(255, 255, 255, 0.7);
+	transform: scale(0.95);
 }
 
-/* Games Section */
 .games-section {
-    padding: 50px;
     text-align: center;
+    margin-bottom: 50px;
 }
 
 .games-section h1 {
     margin-bottom: 30px;
-	margin-top: -10px;
+    margin-top: -10px;
     font-size: 40px;
-    font-family: Verdana, sans-serif;
+    font-family: "Montserrat", sans-serif;
 }
 
-.textInputWrapper {
-      position: relative;
-      width: 300px;  /* Increased width */
+.textInputWrapper .textInput {
+    width: 300px; /* Initial width */
+    padding: 13px 0px;
+    font-size: 14px;
+    border-radius: 10px;
+    background-color: #fff;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.7);
+    border: 2px solid rgba(0, 0, 0, 0.9);
+    box-shadow: 0 7px 9px rgba(0, 0, 0, 0.3);
+    font-family: "Montserrat", sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    text-align: center;
+    margin: 5px auto;
+    transition: width 0.2s ease; /* Smooth transition for width change */
+}
 
-      margin: 30px auto; /* Centered horizontally */
+.textInputWrapper .textInput:focus {
+    outline: none;
+    width: 350px; /* Expands width by 50px when focused */
+}
+
+.textInputWrapper .textInput:focus::placeholder {
+    opacity: 0;
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px); /* Start from 30px below */
     }
-    
-    .textInputWrapper .textInput {
-      border-radius: 5px;
-      box-shadow: 0px 2px 5px rgb(35 35 35 / 30%);
-      max-height: 50px;
-      background-color: #252525;
-      transition: background-color 200ms cubic-bezier(0.25, 0.8, 0.25, 1);
-      color: #e8e8e8;
-      font-size: 14px;
-      font-weight: 500;
-      padding: 12px;
-      width: 100%;
-      border: none;
-      font-family: 'Geist Mono', monospace;
+    100% {
+        opacity: 1;
+        transform: translateY(0); /* End at the original position */
     }
-    
-    .textInputWrapper .textInput:focus,
-    .textInputWrapper .textInput:active {
-      outline: none;
-      background-color: #353535;
-    }
-    
-    .textInput::placeholder {
-      color: rgba(255, 255, 255, 0.582);
-      opacity: 1;
-      transition: opacity 250ms cubic-bezier(0, 0, 0.2, 1);
-    }
+}
 
 .games-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 30px;
     justify-content: center;
+    margin-top: 50px;
+}
+
+.game-title {
+    position: absolute;
+    bottom: -18px;
+    width: 100%;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 7px 8px;
+    transform: translateY(100%);
+    opacity: 0;
+    transition: transform 0.25s ease-out, opacity 0.25s ease-out;
+    white-space: normal;
+    word-wrap: break-word;
+    font-weight: 600;
+    font-size: 18px;
+    max-width: 90%;
 }
 
 .game-button {
     position: relative;
-    background-color: #090909; /* Darker Purple */
-    border: none;
-    border-radius: 8px;
-    padding: 20px;
-    text-align: center;
-    cursor: pointer;
-    transition: transform 0.3s, box-shadow 0.3s;
-    width: 150px;
-    font-family: "Geist Mono", serif;
+    display: inline-block;
     overflow: hidden;
+    width: 150px;
+    height: 150px;
+    transition: all 0.3s ease;
+    box-shadow: 0 7px 9px rgba(0, 0, 0, 0.5);
+    border-radius: 12px;
+    cursor: pointer;
+    align-content: center;
+    opacity: 0; /* Initially hidden */
+    animation: fadeInUp 0.5s ease-out forwards; /* Apply animation */
 }
 
-.game-button::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border: 1px solid #fff;
-    border-radius: 8px;
-    opacity: 0;
-    transform: scale(0.8);
-    transition: opacity 0.3s ease, transform 0.3s ease;
+.game-button:hover .game-title {
+    transform: translateY(0);
+    opacity: 1;
 }
 
 .game-button:hover {
     transform: scale(1.05);
-    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
-}
-
-.game-button:hover::after {
-    opacity: 1;
-    transform: scale(1);
 }
 
 .game-button img {
     width: 100%;
     height: auto;
-    border-radius: 4px;
-}
-
-.game-title {
-    margin-top: 10px;
-    font-size: 16px;
-}
-
-/* Footer */
-.footer {
-    background-color: #090909; /* Darker Purple */
-    text-align: center;
-    width: 100%;
-    bottom: 0;
-    padding: 3px;
-    font-family: "Geist Mono", serif;
 }
