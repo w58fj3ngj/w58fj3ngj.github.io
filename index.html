@@ -102,34 +102,39 @@
         });
 		
 		if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/service-worker.js')
-        .then(() => console.log('Service Worker Registered'))
-        .catch(error => console.error('Service Worker Registration Failed:', error));
-}
+        navigator.serviceWorker.register('/service-worker.js')
+            .then(() => console.log('Service Worker Registered'))
+            .catch(error => console.error('Service Worker Registration Failed:', error));
+    }
 
-    let installPrompt;
+    let deferredPrompt; // renamed variable for clarity
 
+    // Listen for the beforeinstallprompt event and save it for later triggering
     window.addEventListener('beforeinstallprompt', (event) => {
-    console.log("beforeinstallprompt event fired!");
-    event.preventDefault();
-    installPrompt = event;
-});
+        console.log("beforeinstallprompt event fired!");
+        event.preventDefault(); // Prevents the mini-infobar from appearing on mobile
+        deferredPrompt = event;
+    });
 
+    // Install button click event listener
     document.getElementById('install-btn').addEventListener('click', (event) => {
         event.preventDefault(); // Prevent default link behavior
 
-        if (installPrompt) {
-            installPrompt.prompt();
-            installPrompt.userChoice.then((choiceResult) => {
+        if (deferredPrompt) {
+            // Show the install prompt
+            deferredPrompt.prompt();
+            // Wait for the user to respond to the prompt
+            deferredPrompt.userChoice.then((choiceResult) => {
                 if (choiceResult.outcome === 'accepted') {
                     console.log('User accepted the install prompt');
                 } else {
                     console.log('User dismissed the install prompt');
                 }
-                installPrompt = null; // Clear the prompt so it doesn't trigger again
+                deferredPrompt = null; // Reset the deferredPrompt variable
             });
         } else {
-            alert("Your browser doesn't support app installation or the prompt is unavailable.");
+            console.error("Install prompt unavailable. Either your browser doesn't support PWA installation, or the beforeinstallprompt event hasn't fired yet.");
+            alert("Installation is not available. Make sure you're accessing this page from a secure context and that the app meets installation criteria.");
         }
     });
 
