@@ -11,6 +11,7 @@
       "src": "textures/icons/app.png",
       "sizes": "192x192",
       "type": "image/png"
+	  "purpose": "maskable"
     },
     {
       "src": "textures/icons/app.png",
