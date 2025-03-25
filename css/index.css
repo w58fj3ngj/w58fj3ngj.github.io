@@ -219,3 +219,22 @@ body {
     align-items: center;
     gap: 30px;
 }
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* Apply fade-in effect for About Coolio */
+.info-box {
+    animation: fadeIn 0.5s ease-out forwards; /* Add 'forwards' to retain final state */
+    opacity: 0;
+    animation-delay: 0.3s; /* Delay for the About Coolio */
+}
+
+/* Apply fade-in effect for Update Log */
+.update-log {
+    animation: fadeIn 1s ease-out forwards; /* Add 'forwards' to retain final state */
+    opacity: 0;
+    animation-delay: 1s; /* Delay for the Update Log */
+}

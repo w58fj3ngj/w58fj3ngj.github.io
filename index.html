@@ -10,30 +10,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/index.css">
 	<link rel="manifest" href="/manifest.json">
-    <style>
-        /* Fade-in animation keyframes */
-@keyframes fadeIn {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
-}
-
-/* Apply fade-in effect for About Coolio */
-.info-box {
-    animation: fadeIn 0.5s ease-out forwards; /* Add 'forwards' to retain final state */
-    opacity: 0;
-    animation-delay: 0.3s; /* Delay for the About Coolio */
-}
-
-/* Apply fade-in effect for Update Log */
-.update-log {
-    animation: fadeIn 1s ease-out forwards; /* Add 'forwards' to retain final state */
-    opacity: 0;
-    animation-delay: 1s; /* Delay for the Update Log */
-}
-
-
-        /* Add any additional styling you need for the page */
-    </style>
 </head>
 <body>
     <nav class="topnav">
@@ -45,14 +21,13 @@
         </div>
         <div class="nav-links">
             <a href="games.html"><img src="textures/icons/games.png"> Games</a>
-            <a href="proxy.html"><img src="textures/icons/proxy.png"> Proxy</a>
             <a href="settings.html"><img src="textures/icons/settings.png"> Settings</a>
         </div>
     </nav>
 
     <div class="info-box">
     <h1>About Coolio</h1>
-    <p>Coolio is your final destination for discovering and playing cool games! Browse a variety of games, use a proxy (coming soon), and tweak settings to fit your mood. Our platform is all about simplicity and performance.</p>
+    <p>Coolio is your final destination for discovering and playing cool games! Browse a variety of games and tweak settings to fit your mood. Our platform is all about simplicity and performance.</p>
 
     <div class="social-links">
         <a href="https://discord.gg/UsVTvVtWw3" target="_blank" class="social-link" title="Discord Server">
@@ -70,11 +45,9 @@
     </div>
 </div>
 
-    <!-- Update Log Section -->
     <div class="update-log">
         <h2>Update Log</h2>
         <div class="update-log-content" id="update-log-content">
-            <!-- Static text for the update log -->
             <p><strong>Version 1.1</strong></p>
             <p>-Added 25 New Games</p>
 			<p>----------------------------</p>
@@ -84,13 +57,10 @@
     </div>
 
     <script>
-        // Existing script for background and game button functionality
         window.onload = function() {
     const savedBackground = localStorage.getItem('backgroundImage');
     if (savedBackground) {
-        document.body.style.backgroundImage = `url(${savedBackground})`;
-    } else {
-        document.body.style.background = 'linear-gradient(to right, #4facfe, #00f2fe)'; // Default gradient
+        document.body.style.backgroundImage = `url("${savedBackground}")`;
     }
     document.body.style.backgroundSize = 'cover';
     document.body.style.backgroundPosition = 'center center';
@@ -110,30 +80,26 @@
             .catch(error => console.error('Service Worker Registration Failed:', error));
     }
 
-    let deferredPrompt; // renamed variable for clarity
+    let deferredPrompt;
 
-    // Listen for the beforeinstallprompt event and save it for later triggering
     window.addEventListener('beforeinstallprompt', (event) => {
         console.log("beforeinstallprompt event fired!");
-        event.preventDefault(); // Prevents the mini-infobar from appearing on mobile
+        event.preventDefault();
         deferredPrompt = event;
     });
 
-    // Install button click event listener
     document.getElementById('install-btn').addEventListener('click', (event) => {
-        event.preventDefault(); // Prevent default link behavior
+        event.preventDefault();
 
         if (deferredPrompt) {
-            // Show the install prompt
             deferredPrompt.prompt();
-            // Wait for the user to respond to the prompt
             deferredPrompt.userChoice.then((choiceResult) => {
                 if (choiceResult.outcome === 'accepted') {
                     console.log('User accepted the install prompt');
                 } else {
                     console.log('User dismissed the install prompt');
                 }
-                deferredPrompt = null; // Reset the deferredPrompt variable
+                deferredPrompt = null;
             });
         } else {
             console.error("Install prompt unavailable. Either your browser doesn't support PWA installation, or the beforeinstallprompt event hasn't fired yet.");
