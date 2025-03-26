@@ -37,9 +37,7 @@
                 <div class="dropdown">
                     <button class="settings-button">Presets</button>
                     <div class="dropdown-content">
-						<button id="default">None</button>
-                        <button id="preset1">Nebula</button>
-                        <button id="preset2">Bluebird</button>
+                        <button id="preset2">Nebula</button>
                         <button id="preset3">Lake Mountains</button>
 						<button id="preset4">Ocean</button>
                     </div>
@@ -92,16 +90,8 @@
             }
         });
 
-		document.getElementById('default').addEventListener('click', () => {
-            setBackground('textures/backgrounds/default.png');
-        });
-
-	    document.getElementById('preset1').addEventListener('click', () => {
+	    document.getElementById('preset2').addEventListener('click', () => {
             setBackground('textures/backgrounds/nebula.png');
-        });
-
-        document.getElementById('preset2').addEventListener('click', () => {
-            setBackground('textures/backgrounds/bluebird.png');
         });
 
         document.getElementById('preset3').addEventListener('click', () => {

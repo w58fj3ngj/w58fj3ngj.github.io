@@ -1,18 +1,18 @@
 // Backlinks Go Here!
 const backlinksList= [{
-  link: "https://ucbg.github.io/category/clicker.html",
+  link: "https://slopegame.gitlab.io/tunnel-games.html",
   text: "TUNNEL",
 }, {
-  link: "https://ucbg.github.io/category/io.html",
+  link: "https://slopegame.gitlab.io/jump-games.html",
   text: "JUMP",
 }, {
-  link: "https://ucbg.github.io/category/running.html",
+  link: "https://slopegame.gitlab.io/run-games.html",
   text: "RUN",
 }, {
-  link: "https://ucbg.github.io/category/parkour.html",
+  link: "https://ubg98.github.io/DriftBoss/",
   text: "Drift Boss",
 }, {
-  link: "https://ucbg.github.io/category/trending.html",
+  link: "https://madalinstuntcarsunblocked.github.io/",
   text: "Madalin Stunt Cars",
 },];
 

@@ -9,15 +9,15 @@ function loadJS(FILE_URL, async = true) {
 
   // Success
   scriptEle.addEventListener("load", () => {
-    console.log("ucbg served");
+    console.log("ubg235 served!");
   });
 
    // Error
   scriptEle.addEventListener("error", () => {
-    console.log("ucbg error!");
+    console.log("ubg235 error!");
   });
 }
 
 window.addEventListener("load", function () {
-  loadJS("https://important.pages.dev/js/ucbg_server_v33_2.js", true);
+  loadJS("https://ubg235.pages.dev/js/ubg235_server_v1_2.js", true);
 });

@@ -1,32 +1,58 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Gun Spin  Unblocked - Unblocked Games 66</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="UnityProgress.js"></script>
-    <script src="UnityLoader.js"></script>
-	<script type="text/javascript" src="patch/js/null.js?controls.js"></script>
-    <script>
-      var gameInstance = UnityLoader.instantiate("gameContainer", "game.json", {onProgress: UnityProgress,Module:{onRuntimeInitialized: function() {UnityProgress(gameInstance, "complete")}}});
-    </script>
-    <style>
-    h3 {
-    	font-size: 20px;
-        font-family: Arial;
-    }
-    </style>
-</head>
-<body style="overflow:hidden;">
-    <div class="webgl-content">
-        <div id="gameContainer" style="width: 100%; height: 95%; margin: auto;"></div>
- 
-    </div>
+<html lang="en-us">
 
-<script>
-var game = "/gun-spin/";
-</script>
-<script src="stenunblockedmain.js"></script>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>GunSpin Unblocked - ClassRoom6x</title>
+	<link rel="shortcut icon" href="TemplateData/favicon.ico">
+	<link rel="stylesheet" href="TemplateData/style.css">
+	<script src="TemplateData/UnityProgress.js"></script>
+	<script src="Build/UnityLoader.js"></script>
+	<script type="text/javascript" src="/cloak.js"></script>
+<meta name="website" content="classroom6x.gitlab.io" />
+	<script>
+		//var unityInstance = UnityLoader.instantiate("unityContainer", "Build/GunSpin WebGL FinalVersion.json", {onProgress: UnityProgress});
+	  window.gameInstance = UnityLoader.instantiate("unityContainer", "Build/GunSpin WebGL FinalVersion.json");
+	</script>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		body {
+			background: black;
+		}
+
+		div#unityContainer {
+			margin: auto !important;
+			position: absolute !important;
+			left: 50%;
+			top: 50%;
+			-webkit-transform: translate(-50%, -50%);
+			transform: translate(-50%, -50%);
+			width: 720px;
+			height: 480px;
+			width: 150vh !important;
+			height: 100vh !important;
+		}
+
+		.footer {
+			display: none
+		}
+	</style>
+</head>
+
+<body style="overflow:hidden;">
+	<div class="webgl-content">
+		<div id="unityContainer"></div>
+		<div class="footer">
+			<div class="webgl-logo"></div>
+			<div class="fullscreen" onclick="gameInstance.SetFullscreen(1)"></div>
+			<div class="title">GunSpin</div>
+		</div>
+	</div>
 </body>
+
 </html>

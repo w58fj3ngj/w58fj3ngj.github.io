@@ -15,22 +15,17 @@ body {
 }
 
 ::-webkit-scrollbar {
-    width: 7px;
-    height: 10px;
+    width: 9px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #151515;
-    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 100px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #222;
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-corner {
-    background: #333;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 5px;
 }
 
 @keyframes fadeInBlur {
@@ -198,7 +193,7 @@ body {
             border-radius: 10px;
             box-shadow: 0 7px 9px rgba(0, 0, 0, 0.5);
 			border: 2px solid rgba(0, 0, 0, 0.9);
-            max-height: 400px;
+            max-height: 300px;
             overflow-y: auto;
         }
 
