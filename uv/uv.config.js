@@ -1,11 +1,10 @@
 self.__uv$config = {
-    prefix: '/service/',
-    bare: '/bare/',
-    encodeUrl: Ultraviolet.codec.xor.encode,
-    decodeUrl: Ultraviolet.codec.xor.decode,
-    handler: '/uv/uv.handler.js',
-    client: '/uv/uv.client.js',
-    bundle: '/uv/uv.bundle.js',
-    config: '/uv/uv.config.js',
-    sw: '/uv/uv.sw.js',
+    prefix: '/sw/', // Proxy url prefix
+    bare: '/bare/', // Bare server location
+    encodeUrl: Ultraviolet.codec.xor.encode, // URL Encoding function
+    decodeUrl: Ultraviolet.codec.xor.decode, // Decode URL function
+    handler: '/uv.handler.js', // Handler script
+    bundle: '/uv.bundle.js', // Bundled script
+    config: '/uv.config.js', // Configuration script
+    sw: '/uv.sw.js', // Service Worker Script
 };
