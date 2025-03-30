@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Games</title>
+	<link rel="icon" href="textures/icons/logo.png" type="image/png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/apps.css">
+</head>
+<body>
+    <nav class="topnav">
+        <div class="logo">
+            <a href="index.html" class="logo-button">
+    <img src="textures/icons/logo.png" alt="Logo">
+    <span>Coolio</span>
+</a>
+        </div>
+        <div class="nav-links">
+    <a href="games.html"> <img src="textures/icons/games.png"> Games</a>
+	<a href="apps.html" class="active"> <img src="textures/icons/apps.png"> Apps</a>
+    <a href="settings.html"> <img src="textures/icons/settings.png"> Settings</a>
+</div>
+</nav>
+    
+    <section class="games-section">
+        
+        <div class="games-container">
+		<div class="search-container" style="text-align: center;">
+            <div class="textInputWrapper">
+                <input type="text" id="searchInput" class="textInput" placeholder="Search games" />
+            </div>
+        </div>
+            <div class="game-button" data-url="apps/miniwiki.html" data-name="MiniWiki">
+                <img src="textures/apps/miniwiki.png" alt="Game">
+                <p class="game-title">MiniWiki</p>
+            </div>
+			
+			<div class="game-button" data-url="apps/imageconverter.html" data-name="Image Converter">
+                <img src="textures/apps/imageconverter.png" alt="Game">
+                <p class="game-title">Image Converter</p>
+            </div>
+			
+			<div class="game-button" data-url="apps/mediaplayer.html" data-name="Media Player">
+                <img src="textures/apps/mediaplayer.png" alt="Game">
+                <p class="game-title">Media Player</p>
+            </div>
+
+
+           
+        </div>
+    </section>
+
+    <script>
+			document.querySelectorAll('.game-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const url = button.getAttribute('data-url');
+                const gameName = button.getAttribute('data-name');
+                window.location.href = `play.html?url=${encodeURIComponent(url)}&name=${encodeURIComponent(gameName)}`;
+            });
+        });
+
+        document.getElementById('searchInput').addEventListener('input', function () {
+            const searchValue = this.value.toLowerCase();
+            document.querySelectorAll('.game-button').forEach(button => {
+                const gameName = button.getAttribute('data-name').toLowerCase();
+                button.style.display = gameName.includes(searchValue) ? 'inline-block' : 'none';
+            });
+        });
+    </script>
+</body>
+</html>

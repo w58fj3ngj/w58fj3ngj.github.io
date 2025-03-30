@@ -16,7 +16,7 @@
     body {
       margin: 0;
       height: 100vh;
-      background-color: #090909;
+      background-color: #000;
       overflow: hidden;
     }
     /* Loading screen styles */
@@ -136,10 +136,10 @@
   <iframe id="gameIframe"></iframe>
   <div class="control-bar" id="controlBar">
     <div class="control-buttons">
-      <button class="tooltip-container" onclick="window.location.href='games.html'">
-        <img src="textures/icons/back.png" alt="Back" />
-        <div class="tooltip">Go Back</div>
-      </button>
+      <button class="tooltip-container" onclick="window.history.back()">
+  <img src="textures/icons/back.png" alt="Back" />
+  <div class="tooltip">Go Back</div>
+</button>
       <button class="tooltip-container" onclick="enterFullscreen()">
         <img src="textures/icons/fullscreen.png" alt="Fullscreen" />
         <div class="tooltip">Fullscreen</div>

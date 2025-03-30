@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Converter</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background: #222;
+            color: #fff;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            position: relative;
+        }
+		
+		::-webkit-scrollbar {
+    width: 8px; /* Narrow scroll bar */
+    height: 8px; /* Narrow horizontal scroll bar */
+}
+
+::-webkit-scrollbar-thumb {
+    background: #fff; /* White color for the thumb */
+    border-radius: 10px; /* Rounded edges for the thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #ddd; /* Light grey when hovered */
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.2); /* Light background for the track */
+    border-radius: 10px;
+}
+		
+        #container {
+            width: 700px;
+            padding: 20px;
+            background: #333;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+            gap: 40px;
+        }
+        input, select, a, .custom-button {
+            display: block;
+            margin: 20px auto;
+            padding: 15px 30px;  /* Increased padding */
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 18px;  /* Increased font size */
+            border: none;
+            cursor: pointer;
+            background: #222;
+            color: #fff;
+            transition: 0.3s;
+        }
+        .custom-button:hover {
+            background: #181818;
+        }
+        .dropdown-container {
+            display: flex;
+            justify-content: space-between;
+        }
+        select {
+            width: 48%;
+        }
+        .image-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+        .image-wrapper {
+            position: relative;
+            width: 45%;
+            transition: box-shadow 0.5s ease-in-out;
+        }
+        .image-wrapper.glow {
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.8); /* Glow effect */
+        }
+        .image-wrapper img {
+            width: 100%;
+            border-radius: 5px;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        #loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            overflow: hidden;
+            display: none;
+        }
+        #loading-bar {
+            width: 0%;
+            height: 100%;
+            background: #fff;
+            transition: width 1.5s ease-in-out;
+        }
+        #upload {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+    <h2>Image Converter</h2>
+    
+    <div class="dropdown-container">
+        <select id="input-format" class="custom-button">
+            <option value="image/*">Any Image</option>
+            <option value="image/webp">WebP</option>
+            <option value="image/png">PNG</option>
+            <option value="image/jpeg">JPEG</option>
+            <option value="image/ico">ICO</option>
+            <option value="image/jpg">JPG</option>
+            <option value="image/avif">AVIF</option>
+        </select>
+
+        <select id="output-format" class="custom-button">
+            <option value="image/png">PNG</option>
+            <option value="image/jpeg">JPEG</option>
+            <option value="image/webp">WebP</option>
+            <option value="image/ico">ICO</option>
+            <option value="image/jpg">JPG</option>
+            <option value="image/avif">AVIF</option>
+        </select>
+    </div>
+
+    <button class="custom-button" id="custom-upload-button">Upload Image</button>
+
+    <input type="file" id="upload" accept="image/*">
+
+    <div class="image-container">
+        <div class="image-wrapper" id="before-wrapper">
+            <img id="before" src="" alt="Before Image">
+        </div>
+        <div class="image-wrapper" id="after-wrapper">
+            <div id="loading"><div id="loading-bar"></div></div>
+            <img id="after" src="" alt="After Image">
+        </div>
+    </div>
+    <a id="download" class="custom-button" style="display:none;">Download Converted Image</a>
+</div>
+
+<canvas id="canvas" style="display:none;"></canvas>
+
+    <script>
+        document.getElementById('input-format').addEventListener('change', function() {
+            const inputFormat = document.getElementById('input-format').value;
+            const uploadInput = document.getElementById('upload');
+            
+            if (inputFormat === 'image/*') {
+                uploadInput.accept = 'image/*';
+            } else {
+                uploadInput.accept = inputFormat;
+            }
+        });
+
+        document.getElementById('custom-upload-button').addEventListener('click', function() {
+            document.getElementById('upload').click();
+        });
+
+        document.getElementById('upload').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            handleFileUpload(file);
+        });
+
+        function handleFileUpload(file) {
+            const beforeImg = document.getElementById('before');
+            const afterImg = document.getElementById('after');
+            const loading = document.getElementById('loading');
+            const loadingBar = document.getElementById('loading-bar');
+            const downloadLink = document.getElementById('download');
+            const beforeWrapper = document.getElementById('before-wrapper');
+            const afterWrapper = document.getElementById('after-wrapper');
+            
+            if (file) {
+                beforeImg.src = "";
+                afterImg.src = "";
+                afterImg.style.opacity = '0';
+                downloadLink.style.display = "none";
+                
+                beforeWrapper.classList.add('glow');  // Add glow to before image
+                afterWrapper.classList.add('glow');   // Add glow to after image
+                
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = new Image();
+                    img.onload = function() {
+                        beforeImg.src = e.target.result;
+                        beforeImg.style.opacity = '1';
+                        loading.style.display = 'block';
+                        loadingBar.style.width = '0%';
+                        
+                        setTimeout(() => loadingBar.style.width = '100%', 100);
+                        
+                        setTimeout(() => {
+                            const canvas = document.getElementById('canvas');
+                            const ctx = canvas.getContext('2d');
+                            canvas.width = img.width;
+                            canvas.height = img.height;
+                            ctx.drawImage(img, 0, 0);
+                            
+
+                            const outputFormat = document.getElementById('output-format').value;
+                            
+
+                            const convertedDataUrl = canvas.toDataURL(outputFormat);
+                            afterImg.src = convertedDataUrl;
+                            afterImg.style.opacity = '1';
+
+                            setTimeout(() => {
+                                loading.style.display = 'none';
+                                beforeWrapper.classList.remove('glow');  // Remove glow from before image
+                                afterWrapper.classList.remove('glow');   // Remove glow from after image
+                            }, 500);
+                            
+                            const filename = file.name.replace(/\.[^/.]+$/, "");
+                            downloadLink.href = convertedDataUrl;
+                            downloadLink.download = filename + '.' + outputFormat.split('/')[1];
+                            downloadLink.style.display = "block";
+                        }, 1500);
+                    };
+                    img.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            } else {
+                alert("Please upload a valid image.");
+            }
+        }
+    </script>
+</body>
+</html>

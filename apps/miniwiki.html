@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MiniWiki</title>
+  <style>
+    body {
+      background: #121212;
+      color: #e0e0e0;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+      margin: 0;
+    }
+    input, button {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid #444;
+      color: #e0e0e0;
+      padding: 10px;
+      margin: 10px;
+      border-radius: 5px;
+      outline: none;
+      transition: background 0.3s ease;
+    }
+    input:focus, button:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+    #searchInput {
+      width: 60%;
+    }
+    /* Suggestions container styled as a simple, small list */
+    #suggestions {
+      width: 60%;
+      margin: 10px auto;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid #444;
+      border-radius: 10px;
+      padding: 10px;
+      text-align: left;
+    }
+    #suggestions h3 {
+      margin: 0 0 5px 0;
+      font-size: 0.9rem;
+    }
+    #suggestions ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .suggestion-item {
+      padding: 5px;
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+    .suggestion-item:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+    /* Result container */
+    #result {
+      width: 60%;
+      margin: 10px auto;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid #444;
+      border-radius: 10px;
+      padding: 20px;
+    }
+    a {
+      color: #90caf9;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+  <script>
+    async function searchWiki() {
+      let query = document.getElementById("searchInput").value;
+      // Use a CORS proxy if needed (you might need to adjust this based on your environment)
+      let searchSuggestUrl = `https://corsproxy.io/?https://en.wikipedia.org/w/api.php?action=query&list=search&format=json&srsearch=${encodeURIComponent(query)}`;
+      
+      try {
+        let suggestRes = await fetch(searchSuggestUrl);
+        let suggestData = await suggestRes.json();
+        
+        // Create or clear suggestions container
+        let suggestionsDiv = document.getElementById("suggestions");
+        if (!suggestionsDiv) {
+          suggestionsDiv = document.createElement("div");
+          suggestionsDiv.id = "suggestions";
+          // Insert suggestions above the result container (or at the bottom of the body)
+          document.body.insertBefore(suggestionsDiv, document.getElementById("result"));
+        }
+        let suggestionsHTML = "<h3>Did you mean:</h3><ul>";
+        suggestData.query.search.forEach(item => {
+          // Escape any single quotes in title
+          let title = item.title.replace(/'/g, "\\'");
+          suggestionsHTML += `<li class="suggestion-item" onclick="showSuggestion('${title}')">${item.title}</li>`;
+        });
+        suggestionsHTML += "</ul>";
+        suggestionsDiv.innerHTML = suggestionsHTML;
+      } catch (error) {
+        console.error("Error fetching suggestions:", error);
+      }
+    }
+    
+    async function showSuggestion(title) {
+      let summaryUrl = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title)}`;
+      try {
+        let summaryRes = await fetch(summaryUrl);
+        let summaryData = await summaryRes.json();
+        
+        let resultDiv = document.getElementById("result");
+        if (!resultDiv) {
+          resultDiv = document.createElement("div");
+          resultDiv.id = "result";
+          document.body.appendChild(resultDiv);
+        }
+        resultDiv.innerHTML = `
+          <h2>${summaryData.title || title}</h2>
+          <p>${summaryData.extract || "No summary available."}</p>
+          <a href="${summaryData.content_urls?.desktop?.page || '#'}" target="_blank">Read more</a>
+        `;
+      } catch (error) {
+        console.error("Error fetching result:", error);
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>MiniWiki</h1>
+  <input type="text" id="searchInput" placeholder="Enter a word...">
+  <button onclick="searchWiki()">Search</button>
+  <div id="result"></div>
+</body>
+</html>

@@ -1,597 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Games</title>
-	<link rel="icon" href="textures/icons/logo.png" type="image/png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/games.css">
-</head>
-<body>
-    <nav class="topnav">
-        <div class="logo">
-            <a href="index.html" class="logo-button">
-    <img src="textures/icons/logo.png" alt="Logo">
-    <span>Coolio</span>
-</a>
-        </div>
-        <div class="nav-links">
-    <a href="games.html" class="active"> <img src="textures/icons/games.png"> Games</a>
-    <a href="settings.html"> <img src="textures/icons/settings.png"> Settings</a>
-</div>
-</nav>
-    
+    <link rel="icon" href="textures/icons/logo.png" type="image/png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/games.css" />
+  </head>
+  <body>
     <section class="games-section">
-        
-        <div class="games-container">
-		<div class="search-container" style="text-align: center;">
-            <div class="textInputWrapper">
-                <input type="text" id="searchInput" class="textInput" placeholder="Search games" />
-            </div>
+      <div class="search-container">
+        <div class="textInputWrapper">
+          <input
+            type="text"
+            id="searchInput"
+            class="textInput"
+            placeholder="Search games"
+          />
         </div>
-            <div class="game-button" data-url="https://docs.google.com/forms/d/e/1FAIpQLSfGL1e7OqLF33SESfHseKldPbCApT5INSAiy2gx7-nUQJaUvQ/viewform" data-name="Suggestion">
-                <img src="textures/icons/suggestion.webp" alt="Game">
-                <p class="game-title">Suggestion</p>
-            </div>
-
-            <div class="game-button" data-url="games/boxing-random/index.html" data-name="Boxing Random">
-                <img src="textures/games/boxingrandom.webp" alt="Game">
-                <p class="game-title">Boxing Random</p>
-            </div>
-
-            <div class="game-button" data-url="games/volley-random/index.html" data-name="Volley Random">
-                <img src="textures/games/volleyrandom.webp" alt="Game">
-                <p class="game-title">Volley Random</p>
-            </div>
-
-            <div class="game-button" data-url="games/basket-random/index.html" data-name="Basket Random">
-                <img src="textures/games/basketrandom.webp" alt="Game">
-                <p class="game-title">Basket Random</p>
-            </div>
-
-            <div class="game-button" data-url="games/soccer-random/index.html" data-name="Soccer Random">
-                <img src="textures/games/soccerrandom.webp" alt="Game">
-                <p class="game-title">Soccer Random</p>
-            </div>
-			
-			<div class="game-button" data-url="games/blockblast/index.html" data-name="Block Blast">
-    <img src="textures/games/blockblast.webp" alt="Game">
-    <p class="game-title">Block Blast</p>
-</div>
-
-<div class="game-button" data-url="games/snipershot/index.html" data-name="Sniper Shot">
-    <img src="textures/games/snipershot.webp" alt="Game">
-    <p class="game-title">Sniper Shot</p>
-</div>
-
-<div class="game-button" data-url="games/temple-of-boom/index.html" data-name="Temple Of Boom">
-    <img src="textures/games/templeofboom.webp" alt="Game">
-    <p class="game-title">Temple Of Boom</p>
-</div>
-
-<div class="game-button" data-url="games/eggycar/index.html" data-name="Eggy Car">
-    <img src="textures/games/eggycar.webp" alt="Game">
-    <p class="game-title">Eggy Car</p>
-</div>
-
-<div class="game-button" data-url="games/pbm/index.html" data-name="Power Badminton">
-    <img src="textures/games/pbm.webp" alt="Game">
-    <p class="game-title">Power Badminton</p>
-</div>
-
-<div class="game-button" data-url="games/3d-bowling/index.html" data-name="3D Bowling">
-    <img src="textures/games/3dbowling.webp" alt="Game">
-    <p class="game-title">3D Bowling</p>
-</div>
-
-<div class="game-button" data-url="games/basketball-stars/index.html" data-name="Basketball Stars">
-    <img src="textures/games/basketballstars.webp" alt="Game">
-    <p class="game-title">Basketball Stars</p>
-</div>
-
-<div class="game-button" data-url="games/tunnel-rush/index.html" data-name="Tunnel Rush">
-    <img src="textures/games/tunnelrush.webp" alt="Game">
-    <p class="game-title">Tunnel Rush</p>
-</div>
-
-<div class="game-button" data-url="games/tunnel-rush-2/index.html" data-name="Tunnel Rush 2">
-    <img src="textures/games/tunnelrush2.webp" alt="Game">
-    <p class="game-title">Tunnel Rush 2</p>
-</div>
-
-<div class="game-button" data-url="games/earn-to-die/index.html" data-name="Earn To Die">
-    <img src="textures/games/earntodie.webp" alt="Game">
-    <p class="game-title">Earn To Die</p>
-</div>
-
-<div class="game-button" data-url="games/moto-x3m/index.html" data-name="Moto X3M">
-    <img src="textures/games/motox3m.webp" alt="Game">
-    <p class="game-title">Moto X3M</p>
-</div>
-
-<div class="game-button" data-url="games/moto-x3m-2/index.html" data-name="Moto X3M 2">
-    <img src="textures/games/motox3m2.webp" alt="Game">
-    <p class="game-title">Moto X3M 2</p>
-</div>
-
-<div class="game-button" data-url="games/moto-x3m-winter/index.html" data-name="Winter X3M Winter">
-    <img src="textures/games/motox3mwinter.webp" alt="Game">
-    <p class="game-title">Winter X3M Winter</p>
-</div>
-
-<div class="game-button" data-url="games/moto-x3m-pool-party/index.html" data-name="Moto X3M Pool Party">
-    <img src="textures/games/motox3mpoolparty.webp" alt="Game">
-    <p class="game-title">Moto X3M Pool Party</p>
-</div>
-
-<div class="game-button" data-url="games/moto-x3m-spookyland/index.html" data-name="Moto X3M Spookyland">
-    <img src="textures/games/motox3mspookyland.webp" alt="Game">
-    <p class="game-title">Moto X3M Spookyland</p>
-</div>
-
-<div class="game-button" data-url="games/dead-again/index.html" data-name="Dead Again">
-    <img src="textures/games/deadagain.webp" alt="Game">
-    <p class="game-title">Dead Again</p>
-</div>
-
-<div class="game-button" data-url="games/minecraft-classic/index.html" data-name="Minecraft Classic">
-    <img src="textures/games/minecraftclassic.webp" alt="Game">
-    <p class="game-title">Minecraft Classic</p>
-</div>
-
-<div class="game-button" data-url="games/trafficmania/index.html" data-name="Trafficmania">
-    <img src="textures/games/trafficmania.webp" alt="Game">
-    <p class="game-title">Trafficmania</p>
-</div>
-
-<div class="game-button" data-url="games/super-mario-bros/index.html" data-name="Super Mario Bros">
-    <img src="textures/games/supermariobros.webp" alt="Game">
-    <p class="game-title">Super Mario Bros</p>
-</div>
-
-<div class="game-button" data-url="games/hide-and-smash/index.html" data-name="Hide And Smash">
-    <img src="textures/games/hideandsmash.webp" alt="Game">
-    <p class="game-title">Hide And Smash</p>
-</div>
-
-<div class="game-button" data-url="games/temple-run-2/index.html" data-name="Temple Run 2">
-    <img src="textures/games/templerun2.webp" alt="Game">
-    <p class="game-title">Temple Run 2</p>
-</div>
-
-<div class="game-button" data-url="games/blocky-snakes/index.html" data-name="Blocky Snakes">
-    <img src="textures/games/blockysnakes.webp" alt="Game">
-    <p class="game-title">Blocky Snakes</p>
-</div>
-
-<div class="game-button" data-url="games/wordle-plus/index.html" data-name="Wordle+">
-    <img src="textures/games/wordleplus.webp" alt="Game">
-    <p class="game-title">Wordle+</p>
-</div>
-
-<div class="game-button" data-url="games/skillfite-io/index.html" data-name="Skillfite.io">
-    <img src="textures/games/skillfiteio.webp" alt="Game">
-    <p class="game-title">Skillfite.io</p>
-</div>
-
-<div class="game-button" data-url="games/leader-strike/index.html" data-name="Leader Strike">
-    <img src="textures/games/leaderstrike.webp" alt="Game">
-    <p class="game-title">Leader Strike</p>
-</div>
-
-<div class="game-button" data-url="games/papas-sushiria/index.html" data-name="Papa's Sushiria">
-    <img src="textures/games/papassushiria.webp" alt="Game">
-    <p class="game-title">Papa's Sushiria</p>
-</div>
-
-<div class="game-button" data-url="games/papas-pizzaria/index.html" data-name="Papa's Pizzaria">
-    <img src="textures/games/papaspizzaria.webp" alt="Game">
-    <p class="game-title">Papa's Pizzaria</p>
-</div>
-
-<div class="game-button" data-url="games/papas-freezeria/index.html" data-name="Papa's Freezeria">
-    <img src="textures/games/papasfreezeria.webp" alt="Game">
-    <p class="game-title">Papa's Freezeria</p>
-</div>
-
-<div class="game-button" data-url="games/papas-burgeria/index.html" data-name="Papa's Burgeria">
-    <img src="textures/games/papasburgeria.webp" alt="Game">
-    <p class="game-title">Papa's Burgeria</p>
-</div>
-
-<div class="game-button" data-url="games/death-run-3d/index.html" data-name="Death Run 3D">
-    <img src="textures/games/deathrun3d.webp" alt="Game">
-    <p class="game-title">Death Run 3D</p>
-</div>
-
-<div class="game-button" data-url="games/penalty-kick-online/index.html" data-name="Penalty Kick Online">
-    <img src="textures/games/penaltykickonline.webp" alt="Game">
-    <p class="game-title">Penalty Kick Online</p>
-</div>
-
-<div class="game-button" data-url="games/just-fall-lol.html" data-name="Just Fall Lol">
-    <img src="textures/games/justfalllol.webp" alt="Game">
-    <p class="game-title">Just Fall Lol</p>
-</div>
-
-<div class="game-button" data-url="games/sling-drift/index.html" data-name="Sling Drift">
-    <img src="textures/games/slingdrift.webp" alt="Game">
-    <p class="game-title">Sling Drift</p>
-</div>
-
-<div class="game-button" data-url="games/bottle-flip-3d/index.html" data-name="Bottle Flip 3D">
-    <img src="textures/games/bottleflip3d.webp" alt="Game">
-    <p class="game-title">Bottle Flip 3D</p>
-</div>
-
-<div class="game-button" data-url="games/uno-4-colors/index.html" data-name="Uno 4 Colors">
-    <img src="textures/games/uno4colors.webp" alt="Game">
-    <p class="game-title">Uno 4 Colors</p>
-</div>
-
-<div class="game-button" data-url="games/the-impossible-quiz/index.html" data-name="The Impossible Quiz">
-    <img src="textures/games/theimpossiblequiz.webp" alt="Game">
-    <p class="game-title">The Impossible Quiz</p>
-</div>
-
-<div class="game-button" data-url="games/push-the-box/index.html" data-name="Push The Box">
-    <img src="textures/games/pushthebox.webp" alt="Game">
-    <p class="game-title">Push The Box</p>
-</div>
-
-<div class="game-button" data-url="games/slope-2-player/index.html" data-name="Slope 2 Player">
-    <img src="textures/games/slope2player.webp" alt="Game">
-    <p class="game-title">Slope 2 Player</p>
-</div>
-
-<div class="game-button" data-url="games/gunspin/index.html" data-name="Gunspin">
-    <img src="textures/games/gunspin.webp" alt="Game">
-    <p class="game-title">Gunspin</p>
-</div>
-
-<div class="game-button" data-url="games/idle-tree-city/index.html" data-name="Idle Tree City">
-    <img src="textures/games/idletreecity.webp" alt="Game">
-    <p class="game-title">Idle Tree City</p>
-</div>
-
-
-
-
-
-
-
-
-<div class="game-button" data-url="games/maskedforces/index.html" data-name="Masked Forces">
-    <img src="textures/games/maskedforces.webp" alt="Game">
-    <p class="game-title">Masked Forces</p>
-</div>
-
-<div class="game-button" data-url="games/jetpackjoyride/index.html" data-name="Jetpack Joyride">
-    <img src="textures/games/jetpackjoyride.webp" alt="Game">
-    <p class="game-title">Jetpack Joyride</p>
-</div>
-
-<div class="game-button" data-url="games/stack/index.html" data-name="Stack">
-    <img src="textures/games/stack.webp" alt="Game">
-    <p class="game-title">Stack</p>
-</div>
-
-<div class="game-button" data-url="games/candyjump/index.html" data-name="Candy Jump">
-    <img src="textures/games/candyjump.webp" alt="Game">
-    <p class="game-title">Candy Jump</p>
-</div>
-
-<div class="game-button" data-url="games/8ballpool/index.html" data-name="8 Ball Pool">
-    <img src="textures/games/8ballpool.webp" alt="Game">
-    <p class="game-title">8 Ball Pool</p>
-</div>
-
-<div class="game-button" data-url="games/golfchampions/index.html" data-name="Golf Champions">
-    <img src="textures/games/golfchampions.webp" alt="Game">
-    <p class="game-title">Golf Champions</p>
-</div>
-
-<div class="game-button" data-url="games/jungletowerdefense/index.html" data-name="Jungle Tower Defense">
-    <img src="textures/games/jungletowerdefense.webp" alt="Game">
-    <p class="game-title">Jungle Tower Defense</p>
-</div>
-
-<div class="game-button" data-url="games/slope/index.html" data-name="Slope">
-    <img src="textures/games/slope.webp" alt="Game">
-    <p class="game-title">Slope</p>
-</div>
-
-<div class="game-button" data-url="games/stickman-hook/index.html" data-name="Stickman Hook">
-    <img src="textures/games/stickmanhook.webp" alt="Game">
-    <p class="game-title">Stickman Hook</p>
-</div>
-
-<div class="game-button" data-url="games/drive-mad/index.html" data-name="Drive Mad">
-    <img src="textures/games/drivemad.webp" alt="Game">
-    <p class="game-title">Drive Mad</p>
-</div>
-
-<div class="game-button" data-url="games/monstertracks/index.html" data-name="Monster Tracks">
-    <img src="textures/games/monstertracks.webp" alt="Game">
-    <p class="game-title">Monster Tracks</p>
-</div>
-
-<div class="game-button" data-url="games/sausageflip/index.html" data-name="Sausage Flip">
-    <img src="textures/games/sausageflip.webp" alt="Game">
-    <p class="game-title">Sausage Flip</p>
-</div>
-
-<div class="game-button" data-url="games/downthehill/index.html" data-name="Down The Hill">
-    <img src="textures/games/downthehill.webp" alt="Game">
-    <p class="game-title">Down The Hill</p>
-</div>
-
-<div class="game-button" data-url="games/grindcraft/index.html" data-name="Grindcraft">
-    <img src="textures/games/grindcraft.webp" alt="Game">
-    <p class="game-title">Grindcraft</p>
-</div>
-
-<div class="game-button" data-url="games/fruitmerge/index.html" data-name="Fruit Merge">
-    <img src="textures/games/fruitmerge.webp" alt="Game">
-    <p class="game-title">Fruit Merge</p>
-</div>
-
-<div class="game-button" data-url="games/super-mario-64/index.html" data-name="Super Mario 64">
-    <img src="textures/games/supermario64.webp" alt="Game">
-    <p class="game-title">Super Mario 64</p>
-</div>
-
-<div class="game-button" data-url="games/eaglercraft/index.html" data-name="Eaglercraft 1.5.2">
-    <img src="textures/games/eaglercraft.webp" alt="Game">
-    <p class="game-title">Eaglercraft 1.5.2</p>
-</div>
-
-<div class="game-button" data-url="games/baconmaydie/index.html" data-name="Bacon May Die">
-    <img src="textures/games/baconmaydie.webp" alt="Game">
-    <p class="game-title">Bacon May Die</p>
-</div>
-
-<div class="game-button" data-url="games/presidentsimulator/index.html" data-name="President Simulator">
-    <img src="textures/games/presidentsimulator.webp" alt="Game">
-    <p class="game-title">President Simulator</p>
-</div>
-
-<div class="game-button" data-url="games/stickmanragdoll/index.html" data-name="Stickman Ragdoll">
-    <img src="textures/games/stickmanragdoll.webp" alt="Game">
-    <p class="game-title">Stickman Ragdoll</p>
-</div>
-
-<div class="game-button" data-url="games/elasticman/index.html" data-name="Elastic Man">
-    <img src="textures/games/elasticman.webp" alt="Game">
-    <p class="game-title">Elastic Man</p>
-</div>
-
-<div class="game-button" data-url="games/gunspin/index.html" data-name="Gunspin">
-    <img src="textures/games/gunspin.webp" alt="Game">
-    <p class="game-title">Gunspin</p>
-</div>
-
-<div class="game-button" data-url="games/1v1-lol/index.html" data-name="1v1.lol">
-    <img src="textures/games/1v1lol.webp" alt="Game">
-    <p class="game-title">1v1.lol</p>
-</div>
-
-<div class="game-button" data-url="games/2048/index.html" data-name="2048">
-    <img src="textures/games/2048.webp" alt="Game">
-    <p class="game-title">2048</p>
-</div>
-
-<div class="game-button" data-url="games/tiq2/index.html" data-name="The Impossible Quiz 2">
-    <img src="textures/games/tiq2.webp" alt="Game">
-    <p class="game-title">The Impossible Quiz 2</p>
-</div>
-
-<div class="game-button" data-url="games/traffic-rush/index.html" data-name="Traffic Rush">
-    <img src="textures/games/trafficrush.webp" alt="Game">
-    <p class="game-title">Traffic Rush</p>
-</div>
-
-<div class="game-button" data-url="games/awesome-tanks-2/index.html" data-name="Awesome Tanks 2">
-    <img src="textures/games/awesometanks2.webp" alt="Game">
-    <p class="game-title">Awesome Tanks 2</p>
-</div>
-
-<div class="game-button" data-url="games/bloxorz/index.html" data-name="Bloxorz">
-    <img src="textures/games/bloxorz.webp" alt="Game">
-    <p class="game-title">Bloxorz</p>
-</div>
-
-<div class="game-button" data-url="games/idle-ants/index.html" data-name="Idle Ants">
-    <img src="textures/games/idleants.webp" alt="Game">
-    <p class="game-title">Idle Ants</p>
-</div>
-
-<div class="game-button" data-url="games/bit-life/index.html" data-name="Bitlife">
-    <img src="textures/games/bitlife.webp" alt="Game">
-    <p class="game-title">Bitlife</p>
-</div>
-
-<div class="game-button" data-url="games/baldis-basics/index.html" data-name="Baldis Basics">
-    <img src="textures/games/baldisbasics.webp" alt="Game">
-    <p class="game-title">Baldis Basics</p>
-</div>
-
-<div class="game-button" data-url="games/cookie-clicker/index.html" data-name="Cookie Clicker">
-    <img src="textures/games/cookieclicker.webp" alt="Game">
-    <p class="game-title">Cookie Clicker</p>
-</div>
-
-<div class="game-button" data-url="games/crossy-road/index.html" data-name="Crossy Road">
-    <img src="textures/games/crossyroad.webp" alt="Game">
-    <p class="game-title">Crossy Road</p>
-</div>
-
-<div class="game-button" data-url="games/drift-boss/index.html" data-name="Drift Boss">
-    <img src="textures/games/driftboss.webp" alt="Game">
-    <p class="game-title">Drift Boss</p>
-</div>
-
-<div class="game-button" data-url="games/monkey-mart/index.html" data-name="Monkey Mart">
-    <img src="textures/games/monkeymart.webp" alt="Game">
-    <p class="game-title">Monkey Mart</p>
-</div>
-
-<div class="game-button" data-url="games/drift-hunters/index.html" data-name="Drift Hunters">
-    <img src="textures/games/drifthunters.webp" alt="Game">
-    <p class="game-title">Drift Hunters</p>
-</div>
-
-<div class="game-button" data-url="games/idle-breakout/index.html" data-name="Idle Breakout">
-    <img src="textures/games/idlebreakout.webp" alt="Idle Breakout">
-    <p class="game-title">Idle Breakout</p>
-</div>
-
-<div class="game-button" data-url="games/snow-rider-3d/index.html" data-name="Snow Rider 3D">
-    <img src="textures/games/snowrider3d.webp" alt="Snow Rider 3D">
-    <p class="game-title">Snow Rider 3D</p>
-</div>
-
-<div class="game-button" data-url="games/retro-bowl/index.html" data-name="Retro Bowl">
-    <img src="textures/games/retrobowl.webp" alt="Retro Bowl">
-    <p class="game-title">Retro Bowl</p>
-</div>
-
-<div class="game-button" data-url="games/subway-surfers/index.html" data-name="Subway Surfers">
-    <img src="textures/games/subwaysurfers.webp" alt="Subway Surfers">
-    <p class="game-title">Subway Surfers</p>
-</div>
-
-<div class="game-button" data-url="games/shell-shockers/index.html" data-name="Shell Shockers">
-    <img src="textures/games/shellshockers.webp" alt="Shell Shockers">
-    <p class="game-title">Shell Shockers</p>
-</div>
-
-<div class="game-button" data-url="games/tomb-of-the-mask/index.html" data-name="Tomb of the Mask">
-    <img src="textures/games/tombofthemask.webp" alt="Tomb of the Mask">
-    <p class="game-title">Tomb of the Mask</p>
-</div>
-
-<div class="game-button" data-url="games/time-shooter-3/index.html" data-name="Time Shooter 3">
-    <img src="textures/games/timeshooter3.webp" alt="Time Shooter 3">
-    <p class="game-title">Time Shooter 3</p>
-</div>
-
-<div class="game-button" data-url="games/learn-to-fly-1/index.html" data-name="Learn to Fly">
-    <img src="textures/games/learntofly.webp" alt="Learn to Fly">
-    <p class="game-title">Learn to Fly</p>
-</div>
-
-<div class="game-button" data-url="games/johnnyupgrade/index.html" data-name="Johnny Upgrade">
-    <img src="textures/games/johnnyupgrade.webp" alt="Learn to Fly">
-    <p class="game-title">Johnny Upgrade</p>
-</div>
-
-<div class="game-button" data-url="games/tiny-fishing/index.html" data-name="Tiny Fishing">
-    <img src="textures/games/tinyfishing.webp" alt="Tiny Fishing">
-    <p class="game-title">Tiny Fishing</p>
-</div>
-
-<div class="game-button" data-url="games/chrome-dino/index.html" data-name="Chrome Dino">
-    <img src="textures/games/chromedino.webp" alt="Chrome Dino">
-    <p class="game-title">Chrome Dino</p>
-</div>
-
-<div class="game-button" data-url="games/clicker-heros/index.html" data-name="Clicker Heroes">
-    <img src="textures/games/clickerheros.webp" alt="Clicker Heroes">
-    <p class="game-title">Clicker Heroes</p>
-</div>
-
-<div class="game-button" data-url="games/duck-life-1/index.html" data-name="Duck Life">
-    <img src="textures/games/ducklife1.webp" alt="Duck Life">
-    <p class="game-title">Duck Life</p>
-</div>
-
-<div class="game-button" data-url="games/duck-life-2/index.html" data-name="Duck Life 2">
-    <img src="textures/games/ducklife2.webp" alt="Duck Life 2">
-    <p class="game-title">Duck Life 2</p>
-</div>
-
-<div class="game-button" data-url="games/duck-life-3/index.html" data-name="Duck Life 3">
-    <img src="textures/games/ducklife3.webp" alt="Duck Life 3">
-    <p class="game-title">Duck Life 3</p>
-</div>
-
-<div class="game-button" data-url="games/duck-life-4/index.html" data-name="Duck Life 4">
-    <img src="textures/games/ducklife4.webp" alt="Duck Life 4">
-    <p class="game-title">Duck Life 4</p>
-</div>
-
-<div class="game-button" data-url="games/conways-game-of-life/index.html" data-name="Conway's Game of Life">
-    <img src="textures/games/conwaysgameoflife.webp" alt="Conway's Game of Life">
-    <p class="game-title">Conway's Game of Life</p>
-</div>
-
-<div class="game-button" data-url="games/doge-miner/index.html" data-name="Doge Miner">
-    <img src="textures/games/dogeminer.webp" alt="Doge Miner">
-    <p class="game-title">Doge Miner</p>
-</div>
-
-<div class="game-button" data-url="games/rooftop-snipers/index.html" data-name="Rooftop Snipers">
-    <img src="textures/games/rooftopsnipers.webp" alt="Rooftop Snipers">
-    <p class="game-title">Rooftop Snipers</p>
-</div>
-
-<div class="game-button" data-url="games/cubes-2048/index.html" data-name="Cubes 2048">
-    <img src="textures/games/cubes2048.webp" alt="Cubes 2048">
-    <p class="game-title">Cubes 2048</p>
-</div>
-
-<div class="game-button" data-url="games/tube-clicker/index.html" data-name="Tube Clicker">
-    <img src="textures/games/tubeclicker.webp" alt="Tube Clicker">
-    <p class="game-title">Tube Clicker</p>
-</div>
-
-<div class="game-button" data-url="games/paperio2/index.html" data-name="Paper.io 2">
-    <img src="textures/games/paperio2.webp" alt="Paper.io 2">
-    <p class="game-title">Paper.io 2</p>
-</div>
-
-<div class="game-button" data-url="games/crazy-cars/index.html" data-name="Crazy Cars">
-    <img src="textures/games/crazycars.webp" alt="Crazy Cars">
-    <p class="game-title">Crazy Cars</p>
-</div>
-
-<div class="game-button" data-url="games/bad-icecream/index.html" data-name="Bad Ice-Cream">
-    <img src="textures/games/badicecream.webp" alt="Bad Ice-Cream">
-    <p class="game-title">Bad Ice-Cream</p>
-</div>
-        </div>
+      </div>
+      <div class="games-container"></div>
     </section>
 
     <script>
-        // Check if there's a saved background in localStorage and apply it
-        window.onload = function() {
-            const savedBackground = localStorage.getItem('backgroundImage');
-            if (savedBackground) {
-                document.body.style.backgroundImage = `url(${savedBackground})`;
-                document.body.style.backgroundSize = 'cover';
-                document.body.style.backgroundPosition = 'center center';
-            }
-        };
+      document.addEventListener("DOMContentLoaded", function () {
+        const gamesContainer = document.querySelector(".games-container");
 
-        document.querySelectorAll('.game-button').forEach(button => {
-            button.addEventListener('click', () => {
-                const url = button.getAttribute('data-url');
-                const gameName = button.getAttribute('data-name');
-                window.location.href = `play.html?url=${encodeURIComponent(url)}&name=${encodeURIComponent(gameName)}`;
-            });
-        });
+        if (typeof games === "undefined" || !Array.isArray(games)) {
+          console.error("games-data.js is not loaded properly or 'games' is not an array.");
+          return;
+        }
 
-        document.getElementById('searchInput').addEventListener('input', function () {
-            const searchValue = this.value.toLowerCase();
-            document.querySelectorAll('.game-button').forEach(button => {
-                const gameName = button.getAttribute('data-name').toLowerCase();
-                button.style.display = gameName.includes(searchValue) ? 'inline-block' : 'none';
-            });
+        games.forEach(game => {
+          const gameButton = document.createElement("div");
+          gameButton.classList.add("game-button");
+          gameButton.setAttribute("data-url", game.url);
+          gameButton.setAttribute("data-name", game.name);
+
+          gameButton.innerHTML = `
+            <img src="${game.image}" alt="${game.name}" />
+            <p class="game-title">${game.name}</p>
+          `;
+
+          gameButton.addEventListener("click", () => {
+            const gameUrl = game.url;
+            const gameName = game.name;
+
+            window.location.href = `play.html?url=${encodeURIComponent(gameUrl)}&name=${encodeURIComponent(gameName)}`;
+          });
+
+          gamesContainer.appendChild(gameButton);
         });
+      });
     </script>
-</body>
+    <script src="games-data.js"></script>
+  </body>
 </html>

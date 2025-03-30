@@ -1,118 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coolio</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Games</title>
     <link rel="icon" href="textures/icons/logo.png" type="image/png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/index.css">
-	<link rel="manifest" href="/manifest.json">
-</head>
-<body>
-    <nav class="topnav">
-        <div class="logo">
-            <a href="index.html" class="logo-button">
-                <img src="textures/icons/logo.png" alt="Logo">
-                <span>Coolio</span>
-            </a>
-        </div>
-        <div class="nav-links">
-            <a href="games.html"><img src="textures/icons/games.png"> Games</a>
-            <a href="settings.html"><img src="textures/icons/settings.png"> Settings</a>
-        </div>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/index.css" />
+  </head>
+  <body>
+    <nav class="sidebar">
+      <div class="sidebar-header">
+        <a href="index.html" class="logo-button">
+          <img src="textures/icons/logo.png" alt="Logo" />
+          <span class="logo-title">Coolio</span>
+        </a>
+      </div>
+      <div class="nav-links">
+        <a href="#" data-url="home.html" class="active" data-tooltip="Home">
+  <img src="textures/icons/home.png" alt="Home" />
+  <span class="nav-text">Home</span>
+</a>
+<a href="#" data-url="games.html" data-tooltip="Games">
+  <img src="textures/icons/games.png" alt="Games" />
+  <span class="nav-text">Games</span>
+</a>
+<a href="#" data-url="apps.html" data-tooltip="Apps">
+  <img src="textures/icons/apps.png" alt="Apps" />
+  <span class="nav-text">Apps</span>
+</a>
+<a href="#" data-url="settings.html" data-tooltip="Settings">
+  <img src="textures/icons/settings.png" alt="Settings" />
+  <span class="nav-text">Settings</span>
+</a>
+      </div>
+      <button id="toggleSidebar" class="toggle-sidebar">
+        <img src="textures/icons/back.png" class="arrow" alt="Back">
+      </button>
     </nav>
 
-    <div class="info-box">
-    <h1>About Coolio</h1>
-    <p>Coolio is your final destination for discovering and playing cool games! Browse a variety of games and tweak settings to fit your mood. Our platform is all about simplicity and performance.</p>
-
-    <div class="social-links">
-        <a href="https://discord.gg/UsVTvVtWw3" target="_blank" class="social-link" title="Discord Server">
-            <img src="textures/icons/discord.png" alt="Discord" class="social-icon">
-        </a>
-        <a href="https://www.youtube.com/@cooliounblockedgames" target="_blank" class="social-link" title="Youtube">
-            <img src="textures/icons/youtube.png" alt="Youtube" class="social-icon">
-        </a>
-        <a href="https://github.com/w58fj3ngj/w58fj3ngj.github.io" target="_blank" class="social-link" title="View on GitHub">
-            <img src="textures/icons/github.png" alt="Github" class="social-icon">
-        </a>
-        <a href="#" id="install-btn" class="social-link" title="Install the Coolio App">
-            <img src="textures/icons/install.png" alt="Install App" class="social-icon">
-        </a>
-    </div>
-</div>
-
-    <div class="update-log">
-        <h2>Update Log</h2>
-        <div class="update-log-content" id="update-log-content">
-            
-			
-			<p><strong>Version 1.2</strong></p>
-            <p>-Added 13 New Games</p>
-			<p>-Added game player loading screen</p>
-			<p>----------------------------</p>
-			<p><strong>Version 1.1</strong></p>
-            <p>-Added 25 New Games</p>
-			<p>----------------------------</p>
-			<p><strong>Version 1.0</strong></p>
-            <p>-Massive revamp</p>
-        </div>
+    <div id="iframeContainer" class="iframe-container visible">
+      <iframe id="contentIframe" src="home.html" frameborder="0"></iframe>
     </div>
 
     <script>
-        window.onload = function() {
-    const savedBackground = localStorage.getItem('backgroundImage');
-    if (savedBackground) {
-        document.body.style.backgroundImage = `url("${savedBackground}")`;
-    }
-    document.body.style.backgroundSize = 'cover';
-    document.body.style.backgroundPosition = 'center center';
-};
+      document.addEventListener("DOMContentLoaded", () => {
+    const sidebar = document.querySelector(".sidebar");
+    const toggleButton = document.getElementById("toggleSidebar");
+    const navTexts = document.querySelectorAll(".nav-text");
+    const logoTitle = document.querySelector(".logo-title");
+    const iframeContainer = document.getElementById("iframeContainer");
+    const iframe = document.getElementById("contentIframe");
 
-        document.querySelectorAll('.game-button').forEach(button => {
-            button.addEventListener('click', () => {
-                const url = button.getAttribute('data-url');
-                const gameName = button.getAttribute('data-name');
-                window.location.href = `play.html?url=${encodeURIComponent(url)}&name=${encodeURIComponent(gameName)}`;
-            });
-        });
-		
-		if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/service-worker.js')
-            .then(() => console.log('Service Worker Registered'))
-            .catch(error => console.error('Service Worker Registration Failed:', error));
-    }
+    // Load sidebar state and selected page from local storage
+    let sidebarExpanded = localStorage.getItem("sidebarState") !== "closed";
+    const savedPage = localStorage.getItem("selectedPage") || "home.html"; // Default page
 
-    let deferredPrompt;
-
-    window.addEventListener('beforeinstallprompt', (event) => {
-        console.log("beforeinstallprompt event fired!");
-        event.preventDefault();
-        deferredPrompt = event;
-    });
-
-    document.getElementById('install-btn').addEventListener('click', (event) => {
-        event.preventDefault();
-
-        if (deferredPrompt) {
-            deferredPrompt.prompt();
-            deferredPrompt.userChoice.then((choiceResult) => {
-                if (choiceResult.outcome === 'accepted') {
-                    console.log('User accepted the install prompt');
-                } else {
-                    console.log('User dismissed the install prompt');
-                }
-                deferredPrompt = null;
-            });
+    function updateSidebarState() {
+        if (sidebarExpanded) {
+            sidebar.style.width = "250px";
+            navTexts.forEach(el => el.style.display = "inline");
+            logoTitle.style.display = "inline";
+            toggleButton.querySelector(".arrow").style.transform = "rotate(0deg)";
         } else {
-            console.error("Install prompt unavailable. Either your browser doesn't support PWA installation, or the beforeinstallprompt event hasn't fired yet.");
-            alert("Installation is not available. Make sure you're accessing this page from a secure context and that the app meets installation criteria.");
+            sidebar.style.width = "45px";
+            navTexts.forEach(el => el.style.display = "none");
+            logoTitle.style.display = "none";
+            toggleButton.querySelector(".arrow").style.transform = "rotate(360deg)";
+        }
+        // Save sidebar state to local storage
+        localStorage.setItem("sidebarState", sidebarExpanded ? "open" : "closed");
+    }
+
+    // Apply saved sidebar state on load
+    updateSidebarState();
+
+    // Set the iframe src to the saved page on load
+    iframe.src = savedPage;
+
+    // Remove 'active' class from all links and add it to the saved page link
+    document.querySelectorAll(".nav-links a").forEach((link) => {
+        const url = link.getAttribute("data-url");
+        if (url === savedPage) {
+            link.classList.add("active");
+        } else {
+            link.classList.remove("active");
         }
     });
 
+    // Toggle sidebar state when button is clicked
+    toggleButton.addEventListener("click", () => {
+        sidebarExpanded = !sidebarExpanded;
+        updateSidebarState();
+    });
+
+    // Handle navigation link clicks
+    document.querySelectorAll(".nav-links a").forEach((link) => {
+        link.addEventListener("click", (e) => {
+            e.preventDefault();
+            const url = link.getAttribute("data-url");
+
+            // Save the selected page to local storage
+            localStorage.setItem("selectedPage", url);
+
+            // Remove active class from all links and add to the clicked one
+            document.querySelectorAll(".nav-links a").forEach(a => a.classList.remove("active"));
+            link.classList.add("active");
+
+            if (iframeContainer.classList.contains("visible")) {
+                iframeContainer.classList.remove("visible");
+                setTimeout(() => {
+                    iframe.src = url;
+                    iframeContainer.classList.add("visible");
+                }, 300);
+            } else {
+                iframe.src = url;
+                setTimeout(() => {
+                    iframeContainer.classList.add("visible");
+                }, 50);
+            }
+        });
+    });
+});
+
+
     </script>
-</body>
+  </body>
 </html>

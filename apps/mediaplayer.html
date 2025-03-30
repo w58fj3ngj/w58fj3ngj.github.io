@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Custom Media Player</title>
+  <style>
+    /* Base Styles */
+    body {
+      background-color: #121212;
+      color: #e0e0e0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      padding: 30px;
+      max-width: 900px;
+      margin: auto;
+    }
+    h1 {
+      text-align: center;
+      font-weight: 500;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+    }
+
+    /* Button List Container */
+    .button-container {
+      max-height: 300px;
+      overflow-y: auto;
+      margin-bottom: 20px;
+      padding: 0;
+      list-style: none;
+      border: 1px solid #333;
+      border-radius: 6px;
+    }
+    /* Custom Scrollbar */
+    .button-container::-webkit-scrollbar {
+      width: 8px;
+    }
+    .button-container::-webkit-scrollbar-track {
+      background: #222;
+      border-radius: 4px;
+    }
+    .button-container::-webkit-scrollbar-thumb {
+      background: #444;
+      border-radius: 4px;
+    }
+
+    /* Media List Items */
+    .media-item {
+      width: 100%;
+      display: block;
+      background-color: #2c2c2c;
+      border-bottom: 1px solid #333;
+      padding: 12px 16px;
+      font-size: 16px;
+      cursor: pointer;
+      text-align: left;
+      position: relative;
+      opacity: 0;
+      animation: fadeIn 0.5s forwards;
+      transition: background-color 0.3s;
+	  color: white;
+    }
+    .media-item:hover {
+      background-color: #3a3a3a;
+    }
+    .media-item:last-child {
+      border-bottom: none;
+    }
+    .delete-button {
+      position: absolute;
+      top: 50%;
+      right: 16px;
+      transform: translateY(-50%);
+      background-color: #e53935;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+      font-size: 12px;
+      text-align: center;
+    }
+    .delete-button:hover {
+      background-color: #c62828;
+    }
+
+    /* Add File Button */
+    #addFileButton {
+      background-color: #1976d2;
+      color: white;
+      border: none;
+      padding: 18px 24px;
+      font-size: 24px;
+      cursor: pointer;
+      border-radius: 6px;
+      display: block;
+      margin: 0 auto 30px;
+      transition: background-color 0.3s;
+    }
+    #addFileButton:hover {
+      background-color: #1565c0;
+    }
+
+    /* Media Player Layout */
+    .media-player {
+      background-color: #1e1e1e;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
+      display: none;
+      opacity: 0;
+      animation: fadeIn 0.8s forwards;
+    }
+    .media-player h2 {
+      text-align: center;
+      margin-top: 0;
+      font-weight: 300;
+      letter-spacing: 1px;
+    }
+    .media-player video,
+    .media-player audio {
+      width: 100%;
+      border-radius: 6px;
+      outline: none;
+    }
+
+    /* Fade In Animation */
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Media Player</h1>
+    <!-- File list as a list container -->
+    <ul class="button-container" id="buttonContainer">
+      <!-- Dynamic file items will appear here -->
+    </ul>
+    <button id="addFileButton">Add File</button>
+    <div class="media-player" id="mediaPlayer">
+      <h2 id="playerTitle"></h2>
+      <div id="mediaElement"></div>
+    </div>
+  </div>
+
+  <script>
+    // -----------------------
+    // IndexedDB helper functions
+    // -----------------------
+    function openDatabase() {
+      return new Promise((resolve, reject) => {
+        const request = indexedDB.open('MediaPlayerDB', 1);
+        request.onupgradeneeded = (event) => {
+          const db = event.target.result;
+          if (!db.objectStoreNames.contains('files')) {
+            db.createObjectStore('files', { keyPath: 'name' });
+          }
+        };
+        request.onsuccess = (event) => resolve(event.target.result);
+        request.onerror = (event) => reject(event.target.error);
+      });
+    }
+
+    async function saveFileHandle(handle) {
+      const db = await openDatabase();
+      return new Promise((resolve, reject) => {
+        const tx = db.transaction('files', 'readwrite');
+        const store = tx.objectStore('files');
+        const request = store.put({ name: handle.name, handle: handle });
+        request.onsuccess = () => resolve();
+        request.onerror = (e) => reject(e);
+      });
+    }
+
+    async function getAllFileHandles() {
+      const db = await openDatabase();
+      return new Promise((resolve, reject) => {
+        const tx = db.transaction('files', 'readonly');
+        const store = tx.objectStore('files');
+        const request = store.getAll();
+        request.onsuccess = (event) => resolve(event.target.result);
+        request.onerror = (e) => reject(e);
+      });
+    }
+
+    async function removeFileHandle(name) {
+      const db = await openDatabase();
+      return new Promise((resolve, reject) => {
+        const tx = db.transaction('files', 'readwrite');
+        const store = tx.objectStore('files');
+        const request = store.delete(name);
+        request.onsuccess = () => resolve();
+        request.onerror = (e) => reject(e);
+      });
+    }
+
+    // -----------------------
+    // UI & Media Player Logic
+    // -----------------------
+    const addFileButton = document.getElementById('addFileButton');
+    const buttonContainer = document.getElementById('buttonContainer');
+    const mediaPlayer = document.getElementById('mediaPlayer');
+    const mediaElement = document.getElementById('mediaElement');
+    const playerTitle = document.getElementById('playerTitle');
+
+    async function loadFileHandles() {
+      const files = await getAllFileHandles();
+      buttonContainer.innerHTML = '';
+      files.forEach(item => {
+        const listItem = document.createElement('li');
+        // Use a full-width button style for the file item
+        const button = document.createElement('button');
+        button.classList.add('media-item');
+        button.innerText = item.name;
+        button.style.width = '100%';
+        button.addEventListener('click', () => playFile(item.handle));
+        
+        const deleteButton = document.createElement('button');
+        deleteButton.classList.add('delete-button');
+        deleteButton.innerText = 'X';
+        deleteButton.addEventListener('click', async (e) => {
+          e.stopPropagation();
+          await removeFileHandle(item.name);
+          loadFileHandles();
+        });
+        
+        button.appendChild(deleteButton);
+        listItem.appendChild(button);
+        buttonContainer.appendChild(listItem);
+      });
+    }
+
+    // Use the File System Access API to add a file and persist its handle
+    addFileButton.addEventListener('click', async () => {
+      if (!window.showOpenFilePicker) {
+        alert("Your browser does not support the File System Access API.");
+        return;
+      }
+      try {
+        const [handle] = await window.showOpenFilePicker({
+          types: [{
+            description: 'Media Files',
+            accept: {
+              'audio/*': ['.mp3', '.wav', '.ogg'],
+              'video/*': ['.mp4', '.webm']
+            }
+          }]
+        });
+        await saveFileHandle(handle);
+        loadFileHandles();
+      } catch (err) {
+        console.error(err);
+      }
+    });
+
+    async function playFile(handle) {
+      try {
+        // Check permission; if not granted, request it
+        if (await handle.queryPermission({ mode: 'read' }) !== 'granted') {
+          await handle.requestPermission({ mode: 'read' });
+        }
+        const file = await handle.getFile();
+        const reader = new FileReader();
+        reader.onload = function(event) {
+          let mediaTag;
+          if (file.type.startsWith('video/')) {
+            mediaTag = document.createElement('video');
+            mediaTag.controls = true;
+            playerTitle.innerText = 'Video Player';
+          } else if (file.type.startsWith('audio/')) {
+            mediaTag = document.createElement('audio');
+            mediaTag.controls = true;
+            playerTitle.innerText = 'Music Player';
+          } else {
+            alert('Unsupported file type.');
+            return;
+          }
+          mediaTag.src = event.target.result;
+          mediaElement.innerHTML = '';
+          mediaElement.appendChild(mediaTag);
+          mediaPlayer.style.display = 'block';
+          mediaTag.play();
+        };
+        reader.readAsDataURL(file);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    window.onload = loadFileHandles;
+  </script>
+</body>
+</html>
