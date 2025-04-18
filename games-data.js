@@ -10,6 +10,11 @@ const games = [
     image: "textures/games/crazycattle3d.webp"
   },
   {
+    name: "Doodle Cricket",
+    url: "games/doodle-cricket/index.html",
+    image: "textures/games/doodlecricket.webp"
+  },
+  {
     name: "Boxing Random",
     url: "games/boxing-random/index.html",
     image: "textures/games/boxingrandom.webp"
