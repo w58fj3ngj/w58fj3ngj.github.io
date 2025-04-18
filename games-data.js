@@ -10,11 +10,6 @@ const games = [
     image: "textures/games/crazycattle3d.webp"
   },
   {
-    name: "Zombs Royale",
-    url: "games/zombs-royale/index.html",
-    image: "textures/games/zombsroyale.webp"
-  },
-  {
     name: "Boxing Random",
     url: "games/boxing-random/index.html",
     image: "textures/games/boxingrandom.webp"
