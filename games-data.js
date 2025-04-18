@@ -6,8 +6,13 @@ const games = [
   },
   {
     name: "Crazy Cattle 3D",
-    url: "games/crazy-cattle-3d/CrazyCattle3D.html",
+    url: "games/crazy-cattle-3d/index.html",
     image: "textures/games/crazycattle3d.webp"
+  },
+  {
+    name: "Zombs Royale",
+    url: "games/zombs-royale/index.html",
+    image: "textures/games/zombsroyale.webp"
   },
   {
     name: "Boxing Random",
