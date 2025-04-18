@@ -5,6 +5,11 @@ const games = [
     image: "textures/icons/suggestion.webp"
   },
   {
+    name: "Crazy Cattle 3D",
+    url: "games/crazy-cattle-3d/index.html",
+    image: "textures/games/crazycattle3d.webp"
+  },
+  {
     name: "Boxing Random",
     url: "games/boxing-random/index.html",
     image: "textures/games/boxingrandom.webp"
