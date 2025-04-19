@@ -10,6 +10,36 @@ const games = [
     image: "textures/games/crazycattle3d.webp"
   },
   {
+    name: "Roblox",
+    url: "static/iframe.html#https://now.gg/apps/a/19900/b.html",
+    image: "textures/games/roblox.webp"
+  },
+  {
+    name: "Slither.io",
+    url: "static/iframe.html#https://slither.io",
+    image: "textures/games/slitherio.webp"
+  },
+  {
+    name: "Streetball Star",
+    url: "static/iframe.html#https://streetballstar.games235.com/",
+    image: "textures/games/streetballstar.webp"
+  },
+  {
+    name: "Retro Highway",
+    url: "static/iframe.html#https://class811.github.io/g177/retro-highway",
+    image: "textures/games/retrohighway.webp"
+  },
+  {
+    name: "Make It Meme",
+    url: "static/iframe.html#https://class811.github.io/g177/make-it-meme/#/",
+    image: "textures/games/makeitmeme.webp"
+  },
+  {
+    name: "Super Star Car",
+    url: "static/iframe.html#https://class811.github.io/g3/super-star-car/",
+    image: "textures/games/superstarcar.webp"
+  },
+  {
     name: "Doodle Cricket",
     url: "games/doodle-cricket/index.html",
     image: "textures/games/doodlecricket.webp"
