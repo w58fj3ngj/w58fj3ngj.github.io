@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Titan+One&display=swap" rel="stylesheet">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Search the John</title>
   <script src="uv/uv.bundle.js" defer=""></script>
   <script src="uv/uv.config.js" defer=""></script>
   <script src="register-sw.js" defer=""></script>
@@ -11,90 +13,212 @@
   <script src="index.js" defer=""></script>
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #121212;
-      color: #ccc;
-      text-align: center;
-      margin: 0;
-      padding: 30px 0px;
-      overflow: hidden;
-      box-sizing: border-box;
-    }
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #0a0a0a, #121212, #1a1a1a);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    color: #ccc;
+    text-align: center;
+    padding: 155px 50px;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+	
+	::-webkit-scrollbar {
+  width: 5px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #444;
+  transition: background-color 0.3s ease-in-out;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #666;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #222;
+}
 
     h1 {
       font-size: 2rem;
-      margin-bottom: 20px;
+      margin-bottom: 5px;
       color: #f1f1f1;
+	  user-select: none;
+	  font-family: "Montserrat", sans-serif;
+	  font-weight: 700;
     }
 
-    #uv-address {
-      width: 50%;
-      padding: 10px;
-      font-size: 16px;
-      border: 2px solid #444;
-      border-radius: 20px;
-      background-color: #222;
-      color: #ccc;
-      box-shadow: none;
-      outline: none;
-      transition: all 0.3s ease-in-out;
-    }
+#uv-address {
+  width: 85%;
+  padding: 15px 80px;
+  font-size: 18px;
+  border: 2px solid #444;
+  background-color: #212121;
+  color: #ccc;
+  box-shadow: none;
+  outline: none;
+  transition: all 0.3s ease-in-out;
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  border-radius: 3px;
+  margin-top: 10px;
+  display: block;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
 
-    #uv-address:focus {
-      border-color: #555;
-    }
+#uv-address:focus {
+  width: 115%;
+  border-color: #666;
+  background-color: #252525;
+}
 
-    #uv-address::placeholder {
-      color: #888;
-    }
+#uv-address::placeholder {
+  color: #888;
+}
 
     #suggestions {
       list-style: none;
       padding: 0;
-      margin-top: 5px;
-      width: 50%;
-      margin-left: auto;
-      margin-right: auto;
-      text-align: left;
+      margin-top: 20px;
+      width: 100%;
       max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.5s ease-out, opacity 0.5s ease;
+      transition: max-height 0.3s ease-out, opacity 0.3s ease;
       opacity: 0;
     }
 
     #suggestions li {
-      background: #222;
-      padding: 8px 15px;
-      border: 2px solid #555;
-      border-radius: 10px;
-      margin-top: 5px;
-      cursor: pointer;
-      transition: background 0.2s ease;
-      color: #ccc;
-    }
+	width: 145%;
+  background: #212121;
+  padding: 8px 0;
+  border: 1px solid #444;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  color: #ccc;
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
 
-    #suggestions li:hover {
-      background-color: #333;
-    }
+#suggestions li:hover {
+  background-color: #333;
+}
+
 
     hr {
       border: none;
       border-top: 1px solid #555;
-      margin-top: 30px;
-      width: 40%;
+      margin-top: 5px;
+      width: 45%;
       margin-left: auto;
       margin-right: auto;
     }
+	
+.button-group {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+}
+
+.button-group a {
+  background-color: transparent;
+  color: #ccc;
+  border: none;
+  border-radius: 12px;
+  padding: 15px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 130px;
+  height: 120px;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+.button-group a:hover {
+  transform: scale(1.08);
+}
+
+.button-group a img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  margin-bottom: 13px;
+  border-radius: 100px;
+}
+
+.button-group a:link,
+.button-group a:visited,
+.button-group a:active,
+.button-group a:hover {
+  color: #ccc;
+  text-decoration: none;
+}
+
+.button-group a span {
+  font-size: 15px;
+  line-height: 1.2;
+}
   </style>
 </head>
 <body>
-  <h1>ultraviolet proxy</h1>
+<h1 style="display: flex; align-items: center; justify-content: center;">
+    <img src="../textures/icons/logo.png" style="width: 50px; height: 50px; margin-right: 10px;" draggable="false">
+    Coolio Proxy
+</h1>
   <form id="uv-form">
     <input id="uv-search-engine" value="https://duckduckgo.com/?q=%s" type="hidden" />
     <input id="uv-address" type="text" placeholder="Search DuckDuckGo or type a URL." autocomplete="off" />
     <ul id="suggestions"></ul>
   </form>
-  <hr />
+  <hr/>
+  
+  
+<div class="button-group">
+  <a href="iframe.html#https://discord.com/app">
+    <img src="../textures/apps/discord.webp" />
+    <span>Discord</span>
+  </a>
+  <a href="iframe.html#https://play.geforcenow.com">
+    <img src="../textures/apps/geforcenow.webp" />
+    <span>Geforce Now</span>
+  </a>
+  <a href="iframe.html#https://now.gg">
+    <img src="../textures/apps/nowgg.webp" />
+    <span>Now.gg</span>
+  </a>
+  <a href="iframe.html#https://crazygames.com">
+    <img src="../textures/apps/crazygames.webp" />
+    <span>Crazy Games</span>
+  </a>
+  <a href="iframe.html#https://hdtoday.tv">
+    <img src="../textures/apps/hdtoday.webp" />
+    <span>HDtoday</span>
+  </a>
+</div>
+
+
 
   <script>
   document.addEventListener('DOMContentLoaded', () => {
@@ -133,7 +257,7 @@
           const terms = data[1];
 
           suggestions.innerHTML = '';
-          const limitedTerms = terms.slice(0, 8);
+          const limitedTerms = terms.slice(0, 6);
 
           limitedTerms.forEach(term => {
             const li = document.createElement('li');
@@ -153,7 +277,7 @@
         } catch (err) {
           if (err.name !== 'AbortError') console.error('Suggestion fetch error:', err);
         }
-      }, 100);
+      }, 50);
     });
   });
 </script>
