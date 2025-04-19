@@ -1,0 +1,9 @@
+User-agent: *
+
+Disallow: /play/
+Disallow: /?*
+Disallow: /cdn-cgi/
+Disallow: /index-gd.php
+Sitemap: //sitemap.xml
+
+Host: /

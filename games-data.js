@@ -15,6 +15,16 @@ const games = [
     image: "textures/games/doodlecricket.webp"
   },
   {
+    name: "Burrito Bison",
+    url: "games/burrito-bison/index.html",
+    image: "textures/games/burritobison.webp"
+  },
+  {
+    name: "Hole.io",
+    url: "games/hole-io/index.html",
+    image: "textures/games/holeio.webp"
+  },
+  {
     name: "Boxing Random",
     url: "games/boxing-random/index.html",
     image: "textures/games/boxingrandom.webp"
@@ -398,6 +408,11 @@ const games = [
   name: "Crossy Road",
   image: "textures/games/crossyroad.webp",
   url: "games/crossy-road/index.html"
+},
+{
+  name: "Crossy Road Space",
+  image: "textures/games/crossyroadspace.webp",
+  url: "games/crossy-road-space/index.html"
 },
 {
   name: "Drift Boss",
