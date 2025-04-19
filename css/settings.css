@@ -1,13 +1,8 @@
-:root {
-  --background: #111;
-}
-
 body {
-  background: linear-gradient(
-      to bottom,
-      var(--background),
-      color-mix(in srgb, var(--background) 50%, black)
-    );
+  background: linear-gradient(135deg, #0a0a0a, #121212, #1a1a1a);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
   color: white;
   font-family: "Montserrat", sans-serif;
   margin: 0;

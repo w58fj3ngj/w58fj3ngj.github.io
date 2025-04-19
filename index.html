@@ -20,28 +20,29 @@
       </div>
       <div class="nav-links">
         <a href="#" data-url="home.html" class="active" data-tooltip="Home">
-  <img src="textures/icons/home.png" alt="Home" />
-  <span class="nav-text">Home</span>
-</a>
-<a href="#" data-url="games.html" data-tooltip="Games">
-  <img src="textures/icons/games.png" alt="Games" />
-  <span class="nav-text">Games</span>
-</a>
-<a href="#" data-url="apps.html" data-tooltip="Apps">
-  <img src="textures/icons/apps.png" alt="Apps" />
-  <span class="nav-text">Apps</span>
-</a>
-<a href="#" data-url="static/index.html" data-tooltip="Proxy">
-  <img src="textures/icons/proxy.png" alt="Proxy" />
-  <span class="nav-text">Proxy</span>
-  <a href="#" data-url="bookmarklets.html" data-tooltip="Bookmarklets">
-  <img src="textures/icons/bookmarklets.png" alt="Bookmarklets" />
-  <span class="nav-text">Bookmarklets</span>
-</a>
-<a href="#" data-url="settings.html" data-tooltip="Settings">
-  <img src="textures/icons/settings.png" alt="Settings" />
-  <span class="nav-text">Settings</span>
-</a>
+          <img src="textures/icons/home.png" alt="Home" />
+          <span class="nav-text">Home</span>
+        </a>
+        <a href="#" data-url="games.html" data-tooltip="Games">
+          <img src="textures/icons/games.png" alt="Games" />
+          <span class="nav-text">Games</span>
+        </a>
+        <a href="#" data-url="apps.html" data-tooltip="Apps">
+          <img src="textures/icons/apps.png" alt="Apps" />
+          <span class="nav-text">Apps</span>
+        </a>
+        <a href="#" data-url="static/index.html" data-tooltip="Proxy">
+          <img src="textures/icons/proxy.png" alt="Proxy" />
+          <span class="nav-text">Proxy</span>
+        </a>
+        <a href="#" data-url="bookmarklets.html" data-tooltip="Bookmarklets">
+          <img src="textures/icons/bookmarklets.png" alt="Bookmarklets" />
+          <span class="nav-text">Bookmarklets</span>
+        </a>
+        <a href="#" data-url="settings.html" data-tooltip="Settings">
+          <img src="textures/icons/settings.png" alt="Settings" />
+          <span class="nav-text">Settings</span>
+        </a>
       </div>
       <button id="toggleSidebar" class="toggle-sidebar">
         <img src="textures/icons/back.png" class="arrow" alt="Back">
@@ -54,58 +55,58 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", () => {
-    const sidebar = document.querySelector(".sidebar");
-    const toggleButton = document.getElementById("toggleSidebar");
-    const navTexts = document.querySelectorAll(".nav-text");
-    const logoTitle = document.querySelector(".logo-title");
-    const iframeContainer = document.getElementById("iframeContainer");
-    const iframe = document.getElementById("contentIframe");
+        const sidebar = document.querySelector(".sidebar");
+        const toggleButton = document.getElementById("toggleSidebar");
+        const navTexts = document.querySelectorAll(".nav-text");
+        const logoTitle = document.querySelector(".logo-title");
+        const iframeContainer = document.getElementById("iframeContainer");
+        const iframe = document.getElementById("contentIframe");
 
-    // Load sidebar state and selected page from local storage
-    let sidebarExpanded = localStorage.getItem("sidebarState") !== "closed";
-    const savedPage = localStorage.getItem("selectedPage") || "home.html"; // Default page
+        // Load sidebar state and selected page from local storage
+        let sidebarExpanded = localStorage.getItem("sidebarState") !== "closed";
+        const savedPage = localStorage.getItem("selectedPage") || "home.html"; // Default page
 
-    function updateSidebarState() {
-        if (sidebarExpanded) {
+        function updateSidebarState() {
+          if (sidebarExpanded) {
             sidebar.style.width = "250px";
             navTexts.forEach(el => el.style.display = "inline");
             logoTitle.style.display = "inline";
             toggleButton.querySelector(".arrow").style.transform = "rotate(0deg)";
-        } else {
+          } else {
             sidebar.style.width = "45px";
             navTexts.forEach(el => el.style.display = "none");
             logoTitle.style.display = "none";
             toggleButton.querySelector(".arrow").style.transform = "rotate(360deg)";
+          }
+          // Save sidebar state to local storage
+          localStorage.setItem("sidebarState", sidebarExpanded ? "open" : "closed");
         }
-        // Save sidebar state to local storage
-        localStorage.setItem("sidebarState", sidebarExpanded ? "open" : "closed");
-    }
 
-    // Apply saved sidebar state on load
-    updateSidebarState();
-
-    // Set the iframe src to the saved page on load
-    iframe.src = savedPage;
-
-    // Remove 'active' class from all links and add it to the saved page link
-    document.querySelectorAll(".nav-links a").forEach((link) => {
-        const url = link.getAttribute("data-url");
-        if (url === savedPage) {
-            link.classList.add("active");
-        } else {
-            link.classList.remove("active");
-        }
-    });
-
-    // Toggle sidebar state when button is clicked
-    toggleButton.addEventListener("click", () => {
-        sidebarExpanded = !sidebarExpanded;
+        // Apply saved sidebar state on load
         updateSidebarState();
-    });
 
-    // Handle navigation link clicks
-    document.querySelectorAll(".nav-links a").forEach((link) => {
-        link.addEventListener("click", (e) => {
+        // Set the iframe src to the saved page on load
+        iframe.src = savedPage;
+
+        // Remove 'active' class from all links and add it to the saved page link
+        document.querySelectorAll(".nav-links a").forEach((link) => {
+          const url = link.getAttribute("data-url");
+          if (url === savedPage) {
+            link.classList.add("active");
+          } else {
+            link.classList.remove("active");
+          }
+        });
+
+        // Toggle sidebar state when button is clicked
+        toggleButton.addEventListener("click", () => {
+          sidebarExpanded = !sidebarExpanded;
+          updateSidebarState();
+        });
+
+        // Handle navigation link clicks
+        document.querySelectorAll(".nav-links a").forEach((link) => {
+          link.addEventListener("click", (e) => {
             e.preventDefault();
             const url = link.getAttribute("data-url");
 
@@ -117,22 +118,35 @@
             link.classList.add("active");
 
             if (iframeContainer.classList.contains("visible")) {
-                iframeContainer.classList.remove("visible");
-                setTimeout(() => {
-                    iframe.src = url;
-                    iframeContainer.classList.add("visible");
-                }, 300);
-            } else {
+              iframeContainer.classList.remove("visible");
+              setTimeout(() => {
                 iframe.src = url;
-                setTimeout(() => {
-                    iframeContainer.classList.add("visible");
-                }, 50);
+                iframeContainer.classList.add("visible");
+              }, 300);
+            } else {
+              iframe.src = url;
+              setTimeout(() => {
+                iframeContainer.classList.add("visible");
+              }, 50);
             }
+          });
         });
-    });
-});
 
+        // PWA Install Prompt
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+          // Prevent the default mini-infobar or installation UI
+          e.preventDefault();
+          deferredPrompt = e;
 
+          // The browser will show the installation prompt in the address bar automatically
+          // Once the user clicks the install button in the address bar, this event will be triggered
+          window.addEventListener('appinstalled', () => {
+            // Optional: log the app installation event
+            console.log('PWA installed');
+          });
+        });
+      });
     </script>
   </body>
 </html>

@@ -1,13 +1,8 @@
-:root {
-  --background: #111;
-}
-
 body {
-  background: linear-gradient(
-      to bottom,
-      var(--background),
-      color-mix(in srgb, var(--background) 50%, black)
-    );
+background: linear-gradient(135deg, #0a0a0a, #121212, #1a1a1a);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
   color: white;
   font-family: "Montserrat", sans-serif;
   margin: 0;
@@ -93,17 +88,18 @@ body {
   justify-content: center;
   width: 200px;
   height: 200px;
-  background: rgba(15, 15, 15);
+  background: transparent;
   border-radius: 12px;
-  box-shadow: 0 7px 9px rgba(0, 0, 0, 0.5);
   cursor: pointer;
-  transition: transform 0.2s, background 0.2s;
+  transition: all 0.2s;
   overflow: hidden;
+  border: 2px solid rgba(0, 0, 0, 0);
 }
 
 .game-button:hover {
   transform: scale(1.1);
-  background: rgba(25, 25, 25, 0.9);
+  background: rgba(50, 50, 50, 0.9);
+  border: 2px solid rgba(100, 100, 100, 0.9);
 }
 
 .game-button:active {

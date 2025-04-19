@@ -10,11 +10,6 @@ const games = [
     image: "textures/games/crazycattle3d.webp"
   },
   {
-    name: "Roblox",
-    url: "static/iframe.html#https://now.gg/apps/a/19900/b.html",
-    image: "textures/games/roblox.webp"
-  },
-  {
     name: "Slither.io",
     url: "static/iframe.html#https://slither.io",
     image: "textures/games/slitherio.webp"
@@ -28,11 +23,6 @@ const games = [
     name: "Retro Highway",
     url: "static/iframe.html#https://class811.github.io/g177/retro-highway",
     image: "textures/games/retrohighway.webp"
-  },
-  {
-    name: "Make It Meme",
-    url: "static/iframe.html#https://class811.github.io/g177/make-it-meme/#/",
-    image: "textures/games/makeitmeme.webp"
   },
   {
     name: "Super Star Car",
