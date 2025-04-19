@@ -3,18 +3,75 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Home - Google Drive</title>
-    <link rel="icon" type="image/x-icon" href="https://ssl.gstatic.com/images/branding/product/1x/drive_2020q4_32dp.png">
   <script src="/static/uv/uv.bundle.js"></script>
-<script src="/static/uv/uv.config.js"></script>
-<script src="/static/register-sw.js"></script>
-<script src="/static/iframe.js"></script>
-<link href="src.css" rel="stylesheet">
- </head>
+  <script src="/static/uv/uv.config.js"></script>
+  <script src="/static/register-sw.js"></script>
+  <script src="/static/iframe.js"></script>
+
+  <style>
+  
+  body {
+  background: #111;
+  }
+    /* Purple-colored loading screen */
+    .loader-wrapper {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .loader {
+      display: block;
+      --height-of-loader: 7px;
+      --loader-color: #8a2be2; /* Purple color */
+      width: 200px;
+      height: var(--height-of-loader);
+      border-radius: 30px;
+      background-color: rgba(0, 0, 0, 0.3);
+      position: relative;
+    }
+
+    .loader::before {
+      content: "";
+      position: absolute;
+      background: var(--loader-color);
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 100%;
+      border-radius: 30px;
+      animation: moving 1s ease-in-out infinite;
+    }
+
+    @keyframes moving {
+      50% {
+        width: 100%;
+      }
+      100% {
+        width: 0;
+        right: 0;
+        left: unset;
+      }
+    }
+  </style>
+</head>
 <body>
-  <center>
-    <h1>Loading url :3</h1>
-    <p style="display: block;">Loading speeds determine on your internet speeds. meaning if your internet is slow, it loads slower.</p>
-  </center>
+  <div class="loader-wrapper" id="loader-wrapper">
+    <div class="loader"></div>
+  </div>
+
+  <script>
+    // Hide the loading screen after 3 seconds
+    setTimeout(() => {
+      const loaderWrapper = document.getElementById('loader-wrapper');
+      loaderWrapper.style.display = 'none';
+    }, 5000);
+  </script>
 </body>
 </html>
