@@ -97,63 +97,66 @@
   <hr />
 
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const input = document.getElementById('uv-address');
-      const suggestions = document.getElementById('suggestions');
-      const form = document.getElementById('uv-form');
-      let controller = null;
-      let timeout = null;
+  document.addEventListener('DOMContentLoaded', () => {
+    const input = document.getElementById('uv-address');
+    const suggestions = document.getElementById('suggestions');
+    const form = document.getElementById('uv-form');
+    let controller = null;
+    let timeout = null;
 
-      input.addEventListener('input', async () => {
-        const query = input.value.trim();
+    input.addEventListener('input', async () => {
+      const query = input.value.trim();
 
-        clearTimeout(timeout);
+      clearTimeout(timeout);
 
+      if (!query) {
+        suggestions.style.maxHeight = '0';
+        suggestions.style.opacity = '0';
+      }
+
+      timeout = setTimeout(async () => {
         if (!query) {
           suggestions.style.maxHeight = '0';
           suggestions.style.opacity = '0';
+          return;
         }
 
-        timeout = setTimeout(async () => {
-          if (!query) {
-            suggestions.style.maxHeight = '0';
-            suggestions.style.opacity = '0';
-            return;
-          }
+        if (controller) controller.abort();
+        controller = new AbortController();
 
-          if (controller) controller.abort();
-          controller = new AbortController();
+        try {
+          const res = await fetch(`https://corsproxy.io/?https://suggestqueries.google.com/complete/search?client=firefox&q=${encodeURIComponent(query)}`, {
+            signal: controller.signal
+          });
 
-          try {
-            const res = await fetch(`https://corsproxy.io/?https://suggestqueries.google.com/complete/search?client=firefox&q=${encodeURIComponent(query)}`, {
-              signal: controller.signal
+          const data = await res.json();
+          const terms = data[1];
+
+          suggestions.innerHTML = '';
+          const limitedTerms = terms.slice(0, 8);
+
+          limitedTerms.forEach(term => {
+            const li = document.createElement('li');
+            li.textContent = term;
+            li.addEventListener('click', () => {
+              input.value = term;
+              setTimeout(() => {
+                form.requestSubmit();
+              }, 0);
             });
+            suggestions.appendChild(li);
+          });
 
-            const data = await res.json();
-            const terms = data[1];
+          suggestions.style.maxHeight = `${limitedTerms.length * 50}px`;
+          suggestions.style.opacity = '1';
 
-            suggestions.innerHTML = '';
-            const limitedTerms = terms.slice(0, 8);
-
-            limitedTerms.forEach(term => {
-              const li = document.createElement('li');
-              li.textContent = term;
-              li.addEventListener('click', () => {
-                input.value = term;
-                form.submit();
-              });
-              suggestions.appendChild(li);
-            });
-
-            suggestions.style.maxHeight = `${limitedTerms.length * 50}px`;
-            suggestions.style.opacity = '1';
-
-          } catch (err) {
-            if (err.name !== 'AbortError') console.error('Suggestion fetch error:', err);
-          }
-        }, 100);
-      });
+        } catch (err) {
+          if (err.name !== 'AbortError') console.error('Suggestion fetch error:', err);
+        }
+      }, 100);
     });
-  </script>
+  });
+</script>
+
 </body>
 </html>
