@@ -154,10 +154,16 @@
   height: 120px;
   box-sizing: border-box;
   text-decoration: none;
+  transform: scale(1);
 }
 
 .button-group a:hover {
-  transform: scale(1.08);
+  transform: scale(1.1);
+  color: #eeeeee;
+}
+
+.button-group a:active {
+  transform: scale(0.95);
 }
 
 .button-group a img {
@@ -168,17 +174,23 @@
   border-radius: 100px;
 }
 
-.button-group a:link,
-.button-group a:visited,
-.button-group a:active,
-.button-group a:hover {
-  color: #ccc;
-  text-decoration: none;
-}
-
 .button-group a span {
   font-size: 15px;
   line-height: 1.2;
+}
+
+/* Animation wrapper */
+.button-inner {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeSlideUp 0.5s ease-out forwards;
+}
+
+@keyframes fadeSlideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
   </style>
 </head>
@@ -197,26 +209,37 @@
   
 <div class="button-group">
   <a href="iframe.html#https://discord.com/app">
-    <img src="../textures/apps/discord.webp" />
-    <span>Discord</span>
+    <div class="button-inner">
+      <img src="../textures/apps/discord.webp" />
+      <span>Discord</span>
+    </div>
   </a>
   <a href="iframe.html#https://play.geforcenow.com">
-    <img src="../textures/apps/geforcenow.webp" />
-    <span>Geforce Now</span>
+    <div class="button-inner">
+      <img src="../textures/apps/geforcenow.webp" />
+      <span>Geforce Now</span>
+    </div>
   </a>
   <a href="iframe.html#https://now.gg">
-    <img src="../textures/apps/nowgg.webp" />
-    <span>Now.gg</span>
+    <div class="button-inner">
+      <img src="../textures/apps/nowgg.webp" />
+      <span>Now.gg</span>
+    </div>
   </a>
   <a href="iframe.html#https://crazygames.com">
-    <img src="../textures/apps/crazygames.webp" />
-    <span>Crazy Games</span>
+    <div class="button-inner">
+      <img src="../textures/apps/crazygames.webp" />
+      <span>Crazy Games</span>
+    </div>
   </a>
   <a href="iframe.html#https://spaceflix.xyz/">
-    <img src="../textures/apps/spaceflix.webp" />
-    <span>Spaceflix</span>
+    <div class="button-inner">
+      <img src="../textures/apps/spaceflix.webp" />
+      <span>Spaceflix</span>
+    </div>
   </a>
 </div>
+
 
   <script>
   document.addEventListener('DOMContentLoaded', () => {

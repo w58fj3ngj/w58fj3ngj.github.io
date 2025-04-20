@@ -89,21 +89,29 @@ background: linear-gradient(135deg, #0a0a0a, #121212, #1a1a1a);
   width: 200px;
   height: 200px;
   background: transparent;
-  border-radius: 12px;
+  border-radius: 6px;
   cursor: pointer;
   transition: all 0.2s;
   overflow: hidden;
   border: 2px solid rgba(0, 0, 0, 0);
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeSlideUp 0.5s ease-out forwards;
+}
+
+@keyframes fadeSlideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .game-button:hover {
-  transform: scale(1.1);
-  background: rgba(50, 50, 50, 0.9);
-  border: 2px solid rgba(100, 100, 100, 0.9);
+  background: rgba(70, 70, 70, 0.9);
+  border: 2px solid rgba(130, 130, 130, 0.9);
 }
 
 .game-button:active {
-  transform: scale(0.98);
 }
 
 .game-button img {
