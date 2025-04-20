@@ -1,0 +1,162 @@
+{
+    "Riders": [
+        {
+            "id": "RiderGreen",
+            "image": "green",
+            "type": "normal",
+            "price": 50
+        },
+        {
+            "id": "RiderBlue",
+            "image": "blue",
+            "type": "normal",
+            "price": 50
+        },
+        {
+            "id": "RiderOrange",
+            "image": "orange",
+            "type": "normal",
+            "price": 50
+        },
+        {
+            "id": "RiderRed",
+            "image": "red",
+            "type": "normal",
+            "price": 50
+        },
+        {
+            "id": "RiderBlack",
+            "image": "black",
+            "type": "normal",
+            "price": 50
+        },
+        {
+            "id": "RiderYellow",
+            "image": "yellow",
+            "type": "normal",
+            "price": 50
+        }
+    ],
+    "Bikes": [
+        {
+            "id": "SR_Veh_DirtBike_Lime",
+            "image": "dirtLime",
+            "type": "normal",
+            "price": 150
+        },
+        {
+            "id": "SR_Veh_DirtBike_Red",
+            "image": "dirtRed",
+            "type": "normal",
+            "price": 150
+        },
+        {
+            "id": "SR_Veh_DirtBike_LightBlue",
+            "image": "dirtLightBlue",
+            "type": "normal",
+            "price": 150
+        },
+        {
+            "id": "SR_Veh_DirtBike_Blue",
+            "image": "dirtBlue",
+            "type": "normal",
+            "price": 150
+        },
+        {
+            "id": "SR_Veh_DirtBike_Black",
+            "image": "dirtBlack",
+            "type": "normal",
+            "price": 150
+        },
+        {
+            "id": "SR_Veh_DirtBike_Green",
+            "image": "dirtGreen",
+            "type": "normal",
+            "price": 150
+        },
+        {
+            "id": "SR_Veh_DirtBike_Yellow",
+            "image": "dirtYellow",
+            "type": "normal",
+            "price": 150
+        },
+        {
+            "id": "SR_Veh_DirtBike_Purple",
+            "image": "dirtPurple",
+            "type": "normal",
+            "price": 150
+        },
+        {
+            "id": "SR_Veh_DirtBike_Orange",
+            "image": "dirtOrange",
+            "type": "normal",
+            "price": 150
+        },
+        {
+            "id": "SR_Veh_DirtBike_White",
+            "image": "dirtWhite",
+            "type": "normal",
+            "price": 150
+        },
+        {
+            "id": "SR_Veh_MotorBike_Black",
+            "image": "bikeBlack",
+            "type": "normal",
+            "price": 500
+        },
+        {
+            "id": "SR_Veh_MotorBike_Blue",
+            "image": "bikeBlue",
+            "type": "normal",
+            "price": 500
+        },
+        {
+            "id": "SR_Veh_MotorBike_Green",
+            "image": "bikeGreen",
+            "type": "normal",
+            "price": 500
+        },
+        {
+            "id": "SR_Veh_MotorBike_Purple",
+            "image": "bikePurple",
+            "type": "normal",
+            "price": 500
+        },
+        {
+            "id": "SR_Veh_MotorBike_Orange",
+            "image": "bikeOrange",
+            "type": "normal",
+            "price": 500
+        },
+        {
+            "id": "SR_Veh_MotorBike_Lime",
+            "image": "bikeLime",
+            "type": "normal",
+            "price": 500
+        },
+        {
+            "id": "SR_Veh_MotorBike_White",
+            "image": "bikeWhite",
+            "type": "normal",
+            "price": 500
+        },
+        {
+            "id": "SR_Veh_MotorBike_Yellow",
+            "image": "bikeYellow",
+            "type": "normal",
+            "price": 500
+        },
+        {
+            "id": "SR_Veh_MotorBike_LightBlue",
+            "image": "bikeLightBlue",
+            "type": "normal",
+            "price": 500
+        },
+        {
+            "id": "SR_Veh_MotorBike_Red",
+            "image": "bikeRed",
+            "type": "normal",
+            "price": 500
+        }
+    ]
+}

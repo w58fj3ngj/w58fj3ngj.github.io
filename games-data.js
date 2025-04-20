@@ -5,6 +5,11 @@ const games = [
     image: "textures/icons/suggestion.webp"
   },
   {
+    name: "Emulator JS",
+    url: "apps/emulatorjs/index.html",
+    image: "textures/apps/emulatorjs.webp"
+  },
+  {
     name: "Crazy Cattle 3D",
     url: "games/crazy-cattle-3d/index.html",
     image: "textures/games/crazycattle3d.webp"
@@ -15,14 +20,29 @@ const games = [
     image: "textures/games/slitherio.webp"
   },
   {
+    name: "Tricks",
+    url: "games/tricks/index.html",
+    image: "textures/games/tricks.webp"
+  },
+  {
+    name: "Zombie Derby Pixel Survival",
+    url: "games/zombie-derby-pixel-survival/index.html",
+    image: "textures/games/zombiederbypixelsurvival.webp"
+  },
+  {
     name: "Streetball Star",
     url: "static/iframe.html#https://streetballstar.games235.com/",
     image: "textures/games/streetballstar.webp"
   },
   {
     name: "Retro Highway",
-    url: "static/iframe.html#https://class811.github.io/g177/retro-highway",
+    url: "games/retro-highway/index.html",
     image: "textures/games/retrohighway.webp"
+  },
+  {
+    name: "Recoil",
+    url: "games/recoil/index.html",
+    image: "textures/games/recoil.webp"
   },
   {
     name: "Super Star Car",
@@ -463,6 +483,11 @@ const games = [
   name: "Retro Bowl",
   image: "textures/games/retrobowl.webp",
   url: "games/retro-bowl/index.html"
+},
+{
+  name: "Retro Bowl College",
+  image: "textures/games/retrobowlcollege.webp",
+  url: "games/retro-bowl-college/index.html"
 },
 {
   name: "Subway Surfers",
