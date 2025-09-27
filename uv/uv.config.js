@@ -2,7 +2,7 @@
 
 self.__uv$config = {
   prefix: "/service/uv/",
-  bare: "/bare/",
+  bare: "https://i-thought-i-could-trust-you-no-diddy-dog.satucat.uk/tspmo/",
   encodeUrl: Ultraviolet.codec.xor.encode,
   decodeUrl: Ultraviolet.codec.xor.decode,
   handler: "uv/uv.handler.js",
