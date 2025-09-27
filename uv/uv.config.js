@@ -2,7 +2,7 @@
 
 self.__uv$config = {
   prefix: "/service/uv/",
-  bare: "https://skyward.iscorp.com/scripts/wsisa.dll/WService=wseduowenwitheewi/seplog01.w",
+  bare: "208.67.28.19:58090",
   encodeUrl: Ultraviolet.codec.xor.encode,
   decodeUrl: Ultraviolet.codec.xor.decode,
   handler: "uv/uv.handler.js",
