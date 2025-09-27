@@ -1,6 +1,6 @@
-importScripts('/cobalt/uv/uv.bundle.js');
-importScripts('/cobalt/uv/uv.config.js');
-importScripts(__uv$config.sw || '/cobalt/uv/uv.sw.js');
+importScripts('cobalt/uv/uv.bundle.js');
+importScripts('cobalt/uv/uv.config.js');
+importScripts(__uv$config.sw || 'cobalt/uv/uv.sw.js');
 
 const uv = new UVServiceWorker();
 
